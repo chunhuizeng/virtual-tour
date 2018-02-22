@@ -12,7 +12,7 @@
          frameheight="60"
          stopspotsequence="false"
          crop="0|0|60|60"
-         onloaded="startspotanimation(0.1);showPermanentTooltip(std);"
+         onloaded="startspotanimation(0.1);showPermanentTooltip(all);"
 
 
          width="30"
@@ -36,7 +36,7 @@
          stopspotsequence="false"
          crop="0|0|60|60"
          rotate="270"
-         onloaded="startspotanimation(0.1);showPermanentTooltip(std);"
+         onloaded="startspotanimation(0.1);showPermanentTooltip(all);"
 
 
          width="30"
@@ -60,7 +60,7 @@
          stopspotsequence="false"
          crop="0|0|60|60"
          rotate="90"
-         onloaded="startspotanimation(0.1);showPermanentTooltip(std);"
+         onloaded="startspotanimation(0.1);showPermanentTooltip(all);"
 
 
          width="30"
