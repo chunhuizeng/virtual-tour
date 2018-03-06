@@ -4,37 +4,7 @@
   <!-- unsupported kind of display : PointMap -->
 
 
-  <!-- Hide / Show Thumbnails -->
-  <action name="hideTourThumbnails">set(tour_displaythumbnails, false);events.dispatch(hidetourthumbnails);</action>
-  <action name="showTourThumbnails">set(tour_displaythumbnails, true); events.dispatch(showtourthumbnails);</action>
-
-
-<action name="setViewArchitectural">
-	if(normalViewActivated,stopSetViewTweens(););
-	if(current_view_isflat === true,
-		setViewNonFlat(VFOV);
-	);
-	setViewArchitecturalComplete();
-</action>
-
-<action name="setViewArchitecturalComplete">
-	set(view.fovmax, get(panoview.fovmax));
-	set(view.fisheyefovlink, 0.5);
-	tween(view.architectural, 1.0, distance(1.0, 0.45));
-	tween(view.pannini, 0.0, distance(1.0, 0.45), easeOutQuad, if(panniniViewActivated,restoreViewFromPannini();););
-	tween(view.fisheye, 0.0, distance(1.0, 0.45), easeOutQuad, 
-		set(view.stereographic,false);
-		tween(view.vlookat, get(panoview.v), distance(90, 0.45));
-	);
-	tween(view.fov, get(panoview.fov), distance(50, 0.45));
-</action>
-
-  <!-- Tour Information -->
-  <action name="hideTourInfo">set(tour_displayinfo, false);events.dispatch(onhidetourinfo);</action>
-  <action name="showTourInfo">set(tour_displayinfo, true); events.dispatch(onshowtourinfo);</action>
-
-
-<action name="setViewStereographic">
+<action name="setViewLittlePlanet">
 	set(sceneisfull360, false);
 	if(scene[get(xml.scene)].full360,
 		sub(viewhfov, panoview.hmax, panoview.hmin);
@@ -50,23 +20,23 @@
 		if(current_view_isflat === true,
 			setViewNonFlat(VFOV);
 		);
-		setViewStereographicComplete();
+		setViewLittlePlanetComplete();
 	);
 </action>
 
-<action name="setViewStereographicComplete">
+<action name="setViewLittlePlanetComplete">
 	set(backtonormalfirst,false);
 	if(view.pannini GE 1.0, set(backtonormalfirst,true));
 	if(view.stereographic == false, set(backtonormalfirst,true));
 	if(backtonormalfirst, hideTooltip();tween(view.fisheye, 0.0 ,distance(1.0, 0.25), easeOutQuad, WAIT); );
-	tween(view.architectural, 0.0, 0.25);
-	set(view.fovmax, get(panoview.fovmax));
-	set(view.fisheyefovlink, 1.5);
-	tween(view.pannini, 0.0, distance(1.0, 0.75), easeOutQuad, if(panniniViewActivated,restoreViewFromPannini();););
 	set(view.stereographic, true);
+	set(view.fisheyefovlink, 1.5);
+	tween(view.architectural, 0.0, 0.25);
+	tween(view.vlookat, 90, distance(179, 1.50));
+	tween(view.pannini, 0.0, distance(1.0, 0.75), easeOutQuad, if(panniniViewActivated,restoreViewFromPannini();););
+	if(panoview.fovmax LE 150, set(view.fovmax, 150); , set(view.fovmax, get(panoview.fovmax)); );
 	tween(view.fisheye, 1.0, distance(1.0, 0.75));
-	tween(view.vlookat, get(panoview.v), 1.25);
-	tween(view.fov, get(panoview.fov), distance(50, 0.45));
+	tween(view.fov, 150, distance(179, 0.75));
 </action>
 
   <!-- Fullscreen Management -->
@@ -85,11 +55,6 @@
   <action name="enterFullScreenFallback">set(fullscreen,true);</action>
   
   <action name="resizeFullScreenEvent">delayedcall(0,updatescreen(););</action>
-
-  <!-- Hide / Show Controls -->
-  <action name="hideTourControls">set(tour_displaycontrols, false);events.dispatch(hidetourcontrols);</action>
-  <action name="showTourControls">set(tour_displaycontrols, true); events.dispatch(showtourcontrols);</action>
-
 
 <action name="setViewNormal">
 	stopSetViewTweens();
@@ -119,6 +84,31 @@
 	stoptween(view.architectural);
 	stoptween(view.pannini);
 </action>
+
+<action name="setViewArchitectural">
+	if(normalViewActivated,stopSetViewTweens(););
+	if(current_view_isflat === true,
+		setViewNonFlat(VFOV);
+	);
+	setViewArchitecturalComplete();
+</action>
+
+<action name="setViewArchitecturalComplete">
+	set(view.fovmax, get(panoview.fovmax));
+	set(view.fisheyefovlink, 0.5);
+	tween(view.architectural, 1.0, distance(1.0, 0.45));
+	tween(view.pannini, 0.0, distance(1.0, 0.45), easeOutQuad, if(panniniViewActivated,restoreViewFromPannini();););
+	tween(view.fisheye, 0.0, distance(1.0, 0.45), easeOutQuad, 
+		set(view.stereographic,false);
+		tween(view.vlookat, get(panoview.v), distance(90, 0.45));
+	);
+	tween(view.fov, get(panoview.fov), distance(50, 0.45));
+</action>
+
+  <!-- Tour Information -->
+  <action name="hideTourInfo">set(tour_displayinfo, false);events.dispatch(onhidetourinfo);</action>
+  <action name="showTourInfo">set(tour_displayinfo, true); events.dispatch(onshowtourinfo);</action>
+
 
   <!-- Sounds Management -->
   <plugin name="soundinterface"
@@ -578,7 +568,7 @@
     );
   </action>
 
-<action name="setViewLittlePlanet">
+<action name="setViewStereographic">
 	set(sceneisfull360, false);
 	if(scene[get(xml.scene)].full360,
 		sub(viewhfov, panoview.hmax, panoview.hmin);
@@ -594,23 +584,33 @@
 		if(current_view_isflat === true,
 			setViewNonFlat(VFOV);
 		);
-		setViewLittlePlanetComplete();
+		setViewStereographicComplete();
 	);
 </action>
 
-<action name="setViewLittlePlanetComplete">
+<action name="setViewStereographicComplete">
 	set(backtonormalfirst,false);
 	if(view.pannini GE 1.0, set(backtonormalfirst,true));
 	if(view.stereographic == false, set(backtonormalfirst,true));
 	if(backtonormalfirst, hideTooltip();tween(view.fisheye, 0.0 ,distance(1.0, 0.25), easeOutQuad, WAIT); );
-	set(view.stereographic, true);
-	set(view.fisheyefovlink, 1.5);
 	tween(view.architectural, 0.0, 0.25);
-	tween(view.vlookat, 90, distance(179, 1.50));
+	set(view.fovmax, get(panoview.fovmax));
+	set(view.fisheyefovlink, 1.5);
 	tween(view.pannini, 0.0, distance(1.0, 0.75), easeOutQuad, if(panniniViewActivated,restoreViewFromPannini();););
-	if(panoview.fovmax LE 150, set(view.fovmax, 150); , set(view.fovmax, get(panoview.fovmax)); );
+	set(view.stereographic, true);
 	tween(view.fisheye, 1.0, distance(1.0, 0.75));
-	tween(view.fov, 150, distance(179, 0.75));
+	tween(view.vlookat, get(panoview.v), 1.25);
+	tween(view.fov, get(panoview.fov), distance(50, 0.45));
 </action>
+
+  <!-- Hide / Show Controls -->
+  <action name="hideTourControls">set(tour_displaycontrols, false);events.dispatch(hidetourcontrols);</action>
+  <action name="showTourControls">set(tour_displaycontrols, true); events.dispatch(showtourcontrols);</action>
+
+
+  <!-- Hide / Show Thumbnails -->
+  <action name="hideTourThumbnails">set(tour_displaythumbnails, false);events.dispatch(hidetourthumbnails);</action>
+  <action name="showTourThumbnails">set(tour_displaythumbnails, true); events.dispatch(showtourthumbnails);</action>
+
 
 </krpano>
