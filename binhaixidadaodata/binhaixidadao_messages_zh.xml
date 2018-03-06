@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="zh_project_title"><![CDATA[灰灰无人机-厦门滨海西大道]]></data>
+  <data name="zh_project_author_name"><![CDATA[灰灰无人机]]></data>
+
+
+
+  <data name="zh_pano677_title"><![CDATA[厦门滨海西大道]]></data>
+
+
+	<data name="zh_spotmap679_tooltip"><![CDATA[厦门滨海西大道]]></data>
+
+
+
+
+  <data name="zh_logowebsiteurl"><![CDATA[]]></data>
+  <data name="zh_logotooltipText"><![CDATA[Open website]]></data>
+  <data name="zh_contextmenuopenFsLabel"><![CDATA[Enter Fullscreen]]></data>
+  <data name="zh_contextmenucloseFsLabel"><![CDATA[Exit Fullscreen]]></data>
+  <data name="zh_contextmenunormallabel"><![CDATA[Normal View]]></data>
+  <data name="zh_contextmenuarchitecturallabel"><![CDATA[Architectural View]]></data>
+  <data name="zh_contextmenustereographiclabel"><![CDATA[Stereographic View]]></data>
+  <data name="zh_contextmenulittleplanetlabel"><![CDATA[Little Planet View]]></data>
+  <data name="zh_descriptiondisplay_close_text"><![CDATA[Close]]></data>
+  <data name="zh_togglebutton1firsttooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton1secondtooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton2firsttooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton2secondtooltip"><![CDATA[]]></data>
+  <data name="zh_buttontooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton3firsttooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton3secondtooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton4firsttooltip"><![CDATA[隐藏控制]]></data>
+  <data name="zh_togglebutton4secondtooltip"><![CDATA[显示控制]]></data>
+  <data name="zh_button1tooltip"><![CDATA[企业名片]]></data>
+  <data name="zh_button1onclick117292websiteViewer|websiteViewer|toggle_websitewebsite_url"><![CDATA[./binhaixidadaodata/xtras/vcard_hh.html]]></data>
+  <data name="zh_button1onclick117292websiteViewer|websiteViewer|toggle_websitewebsite_title"><![CDATA[联系方式]]></data>
+  <data name="zh_webvrbuttontooltip"><![CDATA[VR]]></data>
+  <data name="zh_websiteViewerfullscreen_text"><![CDATA[Fullscreen mode]]></data>
+  <data name="zh_websiteViewerclose_text"><![CDATA[Close]]></data>
+
+
+  <data name="zh_vr_setup_hmd0"><![CDATA[SELECT YOUR HMD]]></data>
+  <data name="zh_vr_setup_advanced"><![CDATA[ADVANCED SETTINGS]]></data>
+  <data name="zh_vr_setup_title"><![CDATA[WEB VR SETTINGS]]></data>
+  <data name="zh_vr_setup_dvn1"><![CDATA[Device:]]></data>
+  <data name="zh_vr_setup_siz1"><![CDATA[Screen size:]]></data>
+  <data name="zh_vr_setup_ipd1"><![CDATA[IPD:]]></data>
+  <data name="zh_vr_setup_hmd1"><![CDATA[HMD:]]></data>
+  <data name="zh_vr_setup_hmd3"><![CDATA[Customize]]></data>
+  <data name="zh_vr_setup_cal"><![CDATA[Calibrate gyroscope]]></data>
+  <data name="zh_vr_setup_sav"><![CDATA[SAVE]]></data>
+  <data name="zh_vr_setup_rst"><![CDATA[RESET]]></data>
+  <data name="zh_vr_setup_simple"><![CDATA[SIMPLE]]></data>
+  <data name="zh_vr_setup_cls"><![CDATA[CLOSE]]></data>
+  <data name="zh_vr_setup_m31"><![CDATA[HMD SETTINGS]]></data>
+  <data name="zh_vr_setup_fov1"><![CDATA[FOV:]]></data>
+  <data name="zh_vr_setup_dst1"><![CDATA[Distortion:]]></data>
+  <data name="zh_vr_setup_d2tx"><![CDATA[Distortion 2:]]></data>
+  <data name="zh_vr_setup_vig1"><![CDATA[Vignette:]]></data>
+  <data name="zh_vr_setup_cac1"><![CDATA[Chromatic aberration:]]></data>
+  <data name="zh_vr_setup_olp1"><![CDATA[Overlap:]]></data>
+  <data name="zh_vr_setup_m35"><![CDATA[RETURN]]></data>
+  <data name="zh_vr_setup_cb1"><![CDATA[GYROSCOPE]]></data>
+  <data name="zh_vr_setup_cb2"><![CDATA[Place the device on a flat and[br]stable surface and tab CALIBRATE[br]to correct a gyroscope drifting.]]></data>
+  <data name="zh_vr_setup_cb3"><![CDATA[CALIBRATE]]></data>
+  <data name="zh_vr_setup_cb4"><![CDATA[RESET]]></data>
+  <data name="zh_vr_setup_cb5"><![CDATA[RETURN]]></data>
+  <data name="zh_vr_setup_cb6"><![CDATA[Calibrating...]]></data>
+  <data name="zh_vr_setup_cb7"><![CDATA[Successful calibration]]></data>
+  <data name="zh_vr_setup_cb8"><![CDATA[Calibration failed]]></data>
+  <data name="zh_vr_setup_unavailable"><![CDATA[VR mode[br]is unavailable on your device]]></data>
+
+
+  <data name="zh_project_description"><![CDATA[<div><b>滨海西大道</b></div><div><br></div><div><span style="white-space: pre;">	</span></div>]]></data>
+
+
+
+
+</krpano>
