@@ -16,16 +16,25 @@
   <data name="zh_spotpoint707_tooltip"><![CDATA[餐厅]]></data>
 
 
+  <data name="zh_pano24_title"><![CDATA[餐厅]]></data>
+  <data name="zh_spotpoint31_tooltip"><![CDATA[客厅]]></data>
+  <data name="zh_spotpoint34_tooltip"><![CDATA[走廊]]></data>
+  <data name="zh_spotpoint723_tooltip"><![CDATA[玄关]]></data>
+
+
   <data name="zh_pano36_title"><![CDATA[客厅]]></data>
   <data name="zh_spotpoint41_tooltip"><![CDATA[走廊]]></data>
   <data name="zh_spotpoint42_tooltip"><![CDATA[玄关]]></data>
   <data name="zh_spotpoint722_tooltip"><![CDATA[餐厅]]></data>
 
 
-  <data name="zh_pano24_title"><![CDATA[餐厅]]></data>
-  <data name="zh_spotpoint31_tooltip"><![CDATA[客厅]]></data>
-  <data name="zh_spotpoint34_tooltip"><![CDATA[走廊]]></data>
-  <data name="zh_spotpoint723_tooltip"><![CDATA[玄关]]></data>
+  <data name="zh_pano709_title"><![CDATA[走廊]]></data>
+  <data name="zh_spotpoint710_tooltip"><![CDATA[客厅]]></data>
+  <data name="zh_spotpoint711_tooltip"><![CDATA[次卧]]></data>
+  <data name="zh_spotpoint718_tooltip"><![CDATA[主卧]]></data>
+  <data name="zh_spotpoint719_tooltip"><![CDATA[小孩房]]></data>
+  <data name="zh_spotpoint720_tooltip"><![CDATA[玄关]]></data>
+  <data name="zh_spotpoint721_tooltip"><![CDATA[餐厅]]></data>
 
 
   <data name="zh_pano32_title"><![CDATA[主卧]]></data>
@@ -38,15 +47,6 @@
 
   <data name="zh_pano107_title"><![CDATA[小孩房]]></data>
   <data name="zh_spotpoint109_tooltip"><![CDATA[走廊]]></data>
-
-
-  <data name="zh_pano709_title"><![CDATA[走廊]]></data>
-  <data name="zh_spotpoint710_tooltip"><![CDATA[客厅]]></data>
-  <data name="zh_spotpoint711_tooltip"><![CDATA[次卧]]></data>
-  <data name="zh_spotpoint718_tooltip"><![CDATA[主卧]]></data>
-  <data name="zh_spotpoint719_tooltip"><![CDATA[小孩房]]></data>
-  <data name="zh_spotpoint720_tooltip"><![CDATA[玄关]]></data>
-  <data name="zh_spotpoint721_tooltip"><![CDATA[餐厅]]></data>
 
 
 
