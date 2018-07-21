@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="zh_project_title"><![CDATA[lwgj16概念草图]]></data>
+  <data name="zh_project_author_name"><![CDATA[HAECO PRIVATE JET SOLUTIONS]]></data>
+  <data name="zh_project_author_url"><![CDATA[http://www.taeco.com/s8.asp]]></data>
+
+
+
+  <data name="zh_pano22_title"><![CDATA[玄关]]></data>
+  <data name="zh_spotpoint38_tooltip"><![CDATA[客厅]]></data>
+  <data name="zh_spotpoint707_tooltip"><![CDATA[餐厅]]></data>
+
+
+  <data name="zh_pano36_title"><![CDATA[客厅]]></data>
+  <data name="zh_spotpoint41_tooltip"><![CDATA[走廊]]></data>
+  <data name="zh_spotpoint42_tooltip"><![CDATA[玄关]]></data>
+  <data name="zh_spotpoint722_tooltip"><![CDATA[餐厅]]></data>
+
+
+  <data name="zh_pano24_title"><![CDATA[餐厅]]></data>
+  <data name="zh_spotpoint31_tooltip"><![CDATA[客厅]]></data>
+  <data name="zh_spotpoint34_tooltip"><![CDATA[走廊]]></data>
+  <data name="zh_spotpoint723_tooltip"><![CDATA[玄关]]></data>
+
+
+  <data name="zh_pano32_title"><![CDATA[主卧]]></data>
+  <data name="zh_spotpoint35_tooltip"><![CDATA[走廊]]></data>
+
+
+  <data name="zh_pano101_title"><![CDATA[次卧]]></data>
+  <data name="zh_spotpoint105_tooltip"><![CDATA[走廊]]></data>
+
+
+  <data name="zh_pano107_title"><![CDATA[小孩房]]></data>
+  <data name="zh_spotpoint109_tooltip"><![CDATA[走廊]]></data>
+
+
+  <data name="zh_pano709_title"><![CDATA[走廊]]></data>
+  <data name="zh_spotpoint710_tooltip"><![CDATA[客厅]]></data>
+  <data name="zh_spotpoint711_tooltip"><![CDATA[次卧]]></data>
+  <data name="zh_spotpoint718_tooltip"><![CDATA[主卧]]></data>
+  <data name="zh_spotpoint719_tooltip"><![CDATA[小孩房]]></data>
+  <data name="zh_spotpoint720_tooltip"><![CDATA[玄关]]></data>
+  <data name="zh_spotpoint721_tooltip"><![CDATA[餐厅]]></data>
+
+
+
+
+
+
+  <data name="zh_contextmenuopenFsLabel"><![CDATA[Enter Fullscreen]]></data>
+  <data name="zh_contextmenucloseFsLabel"><![CDATA[Exit Fullscreen]]></data>
+  <data name="zh_contextmenunormallabel"><![CDATA[Normal View]]></data>
+  <data name="zh_contextmenuarchitecturallabel"><![CDATA[Architectural View]]></data>
+  <data name="zh_contextmenustereographiclabel"><![CDATA[Stereographic View]]></data>
+  <data name="zh_contextmenulittleplanetlabel"><![CDATA[Little Planet View]]></data>
+  <data name="zh_descriptiondescription_title"><![CDATA[THE DESIGN PHILOSOPHY]]></data>
+  <data name="zh_descriptiondisplay_close_text"><![CDATA[Close]]></data>
+  <data name="zh_togglebutton1firsttooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton1secondtooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton2firsttooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton2secondtooltip"><![CDATA[]]></data>
+  <data name="zh_buttontooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton3firsttooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton3secondtooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton4firsttooltip"><![CDATA[hide control]]></data>
+  <data name="zh_togglebutton4secondtooltip"><![CDATA[show control]]></data>
+  <data name="zh_webvrbuttontooltip"><![CDATA[VR]]></data>
+  <data name="zh_websiteViewerfullscreen_text"><![CDATA[Fullscreen mode]]></data>
+  <data name="zh_websiteViewerclose_text"><![CDATA[Close]]></data>
+
+
+  <data name="zh_vr_setup_hmd0"><![CDATA[SELECT YOUR HMD]]></data>
+  <data name="zh_vr_setup_advanced"><![CDATA[ADVANCED SETTINGS]]></data>
+  <data name="zh_vr_setup_title"><![CDATA[WEB VR SETTINGS]]></data>
+  <data name="zh_vr_setup_dvn1"><![CDATA[Device:]]></data>
+  <data name="zh_vr_setup_siz1"><![CDATA[Screen size:]]></data>
+  <data name="zh_vr_setup_ipd1"><![CDATA[IPD:]]></data>
+  <data name="zh_vr_setup_hmd1"><![CDATA[HMD:]]></data>
+  <data name="zh_vr_setup_hmd3"><![CDATA[Customize]]></data>
+  <data name="zh_vr_setup_cal"><![CDATA[Calibrate gyroscope]]></data>
+  <data name="zh_vr_setup_sav"><![CDATA[SAVE]]></data>
+  <data name="zh_vr_setup_rst"><![CDATA[RESET]]></data>
+  <data name="zh_vr_setup_simple"><![CDATA[SIMPLE]]></data>
+  <data name="zh_vr_setup_cls"><![CDATA[CLOSE]]></data>
+  <data name="zh_vr_setup_m31"><![CDATA[HMD SETTINGS]]></data>
+  <data name="zh_vr_setup_fov1"><![CDATA[FOV:]]></data>
+  <data name="zh_vr_setup_dst1"><![CDATA[Distortion:]]></data>
+  <data name="zh_vr_setup_d2tx"><![CDATA[Distortion 2:]]></data>
+  <data name="zh_vr_setup_vig1"><![CDATA[Vignette:]]></data>
+  <data name="zh_vr_setup_cac1"><![CDATA[Chromatic aberration:]]></data>
+  <data name="zh_vr_setup_olp1"><![CDATA[Overlap:]]></data>
+  <data name="zh_vr_setup_m35"><![CDATA[RETURN]]></data>
+  <data name="zh_vr_setup_cb1"><![CDATA[GYROSCOPE]]></data>
+  <data name="zh_vr_setup_cb2"><![CDATA[Place the device on a flat and[br]stable surface and tab CALIBRATE[br]to correct a gyroscope drifting.]]></data>
+  <data name="zh_vr_setup_cb3"><![CDATA[CALIBRATE]]></data>
+  <data name="zh_vr_setup_cb4"><![CDATA[RESET]]></data>
+  <data name="zh_vr_setup_cb5"><![CDATA[RETURN]]></data>
+  <data name="zh_vr_setup_cb6"><![CDATA[Calibrating...]]></data>
+  <data name="zh_vr_setup_cb7"><![CDATA[Successful calibration]]></data>
+  <data name="zh_vr_setup_cb8"><![CDATA[Calibration failed]]></data>
+  <data name="zh_vr_setup_unavailable"><![CDATA[VR mode[br]is unavailable on your device]]></data>
+
+
+  <data name="zh_project_description"><![CDATA[<p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"></p><p style="language:en-US;line-height:54.0pt;mso-line-height-rule:exactly;margin-top:0pt;margin-bottom:0pt;text-align:left;direction:ltr;unicode-bidi:embed;vertical-align:baseline;mso-line-break-override:restrictions;punctuation-wrap:simple"><span style="font-size:12.0pt;font-family:Arial;mso-ascii-font-family:Arial;mso-fareast-font-family:黑体;mso-bidi-font-family:Arial;mso-fareast-theme-font:major-fareast;color:#3D3935;mso-color-index:1;mso-font-kerning:12.0pt;language:en-US;font-weight:bold;mso-style-textfill-type:solid;mso-style-textfill-fill-themecolor:text1;mso-style-textfill-fill-color:#3D3935;mso-style-textfill-fill-alpha:100.0%">BBJ MAX 8 "Gal</span><span style="color: rgb(61, 57, 53); font-family: Arial; font-size: 12pt; font-weight: bold; line-height: 54pt;">axy" Private Jet Concept</span></p><p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">This cabin concept was </span><span style="font-size: 12pt; font-family: Arial; color: rgb(61, 57, 53);">inspired</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);"> bythe beautiful curves of nature. </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">The entire cabin layout wascompact and smart</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">.Under the curvilinear lighting effects of the entire </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">cabinceiling, the free-form cabin space</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">, streamlined </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">floorand ceiling, are just </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">asa bright light strip in the starry </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">sky</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);"> </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">and giving people </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">apleasant </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">feeling,all add to the natural, dreamy, relaxed and </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">v</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">ibrant space atmosphere that thecabin offers.</span></p><p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);"><br></span></p><p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"></p><p style="language:en-US;margin-top:0pt;margin-bottom:0pt;text-align:justify;text-justify:inter-ideograph;direction:ltr;unicode-bidi:embed;vertical-align:baseline"><span style="font-size:12.0pt;font-family:Calibri;mso-ascii-font-family:Calibri;mso-fareast-font-family:&quot;Arial Unicode MS&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black;mso-font-kerning:1.0pt;language:zh-CN;font-weight:normal;mso-style-textfill-type:solid;mso-style-textfill-fill-color:black;mso-style-textfill-fill-alpha:100.0%"><span style="mso-spacerun:yes">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></span><span style="font-size:12.0pt;font-family:&quot;Arial Unicode MS&quot;;mso-ascii-font-family:Calibri;mso-fareast-font-family:&quot;Arial Unicode MS&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black;mso-font-kerning:1.0pt;language:zh-CN;font-weight:normal;mso-style-textfill-type:solid;mso-style-textfill-fill-color:black;mso-style-textfill-fill-alpha:100.0%">该</span><span style="font-size:12.0pt;font-family:&quot;Arial Unicode MS&quot;;mso-ascii-font-family:Calibri;mso-fareast-font-family:&quot;Arial Unicode MS&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black;mso-font-kerning:1.0pt;language:zh-CN;font-weight:normal;mso-style-textfill-type:solid;mso-style-textfill-fill-color:black;mso-style-textfill-fill-alpha:100.0%">设计的灵感来源于自然界中优美的曲线。紧凑、灵动的客舱布局，自由曲面的客舱空间，流动造型的地板与天花板，在客舱天花板曲线造型灯光效果下，犹如星空中明亮的光带，带给人愉悦的感受，从而营造一种自然、梦幻、轻松而又焕发活力的空间氛围。</span></p>]]></data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</krpano>
