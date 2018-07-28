@@ -14,6 +14,7 @@
   <data name="zh_pano22_title"><![CDATA[玄关]]></data>
   <data name="zh_spotpoint38_tooltip"><![CDATA[客厅]]></data>
   <data name="zh_spotpoint707_tooltip"><![CDATA[餐厅]]></data>
+  <data name="zh_spotpoint785_tooltip"><![CDATA[客卫]]></data>
 
 
   <data name="zh_pano24_title"><![CDATA[餐厅]]></data>
@@ -52,6 +53,10 @@
 
   <data name="zh_pano764_title"><![CDATA[主卫]]></data>
   <data name="zh_spotpoint767_tooltip"><![CDATA[主卧]]></data>
+
+
+  <data name="zh_pano783_title"><![CDATA[客卫]]></data>
+  <data name="zh_spotpoint786_tooltip"><![CDATA[玄关]]></data>
 
 
 
@@ -113,6 +118,9 @@
 
 
   <data name="zh_project_description"><![CDATA[<p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"></p><p style="language:en-US;line-height:54.0pt;mso-line-height-rule:exactly;margin-top:0pt;margin-bottom:0pt;text-align:left;direction:ltr;unicode-bidi:embed;vertical-align:baseline;mso-line-break-override:restrictions;punctuation-wrap:simple"><br></p>]]></data>
+
+
+
 
 
 
