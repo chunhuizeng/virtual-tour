@@ -15,7 +15,7 @@
          stopspotsequence="false"
          crop="0|0|60|60"
          edge="center"
-         onloaded="startspotanimation(0.1);showPermanentTooltip(std);"
+         onloaded="startspotanimation(0.1);showPermanentTooltip(all);"
 
 
          width="30"
@@ -39,7 +39,7 @@
          crop="0|0|60|60"
          edge="center"
          rotate="270"
-         onloaded="startspotanimation(0.1);showPermanentTooltip(std);"
+         onloaded="startspotanimation(0.1);showPermanentTooltip(all);"
 
 
          width="30"
@@ -63,7 +63,7 @@
          crop="0|0|60|60"
          edge="center"
          rotate="90"
-         onloaded="startspotanimation(0.1);showPermanentTooltip(std);"
+         onloaded="startspotanimation(0.1);showPermanentTooltip(all);"
 
 
          width="30"
