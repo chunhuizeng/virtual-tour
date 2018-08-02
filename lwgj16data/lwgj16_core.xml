@@ -20,7 +20,7 @@
   <krpano tour_vrdevices="true" devices="html5" />
   <krpano videos_sounds_path="%FIRSTXML%" devices="html5" />
   <krpano videos_sounds_path="%SWFPATH%" devices="flash" />
-  <krpano projection_current_params="view.fisheyefovlink=0.5&amp;view.architectural=1.0&amp;view.pannini=0.0&amp;view.fisheye=0.0&amp;view.stereographic=false" />
+  <krpano projection_current_params="view.fisheyefovlink=0.5&amp;view.architectural=0.0&amp;view.pannini=0.0&amp;view.fisheye=0.0&amp;view.stereographic=false" />
 
 
   <display autofullscreen="false" devices="android" />
