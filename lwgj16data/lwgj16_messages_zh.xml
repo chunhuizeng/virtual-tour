@@ -40,7 +40,7 @@
 
   <data name="zh_pano32_title"><![CDATA[主卧]]></data>
   <data name="zh_spotpoint35_tooltip"><![CDATA[走廊]]></data>
-  <data name="zh_spotpoint766_tooltip"><![CDATA[主卫]]></data>
+  <data name="zh_spotpoint847_tooltip"><![CDATA[主卫]]></data>
 
 
   <data name="zh_pano101_title"><![CDATA[次卧]]></data>
@@ -51,12 +51,11 @@
   <data name="zh_spotpoint109_tooltip"><![CDATA[走廊]]></data>
 
 
-  <data name="zh_pano764_title"><![CDATA[主卫]]></data>
-  <data name="zh_spotpoint767_tooltip"><![CDATA[主卧]]></data>
-
-
   <data name="zh_pano783_title"><![CDATA[客卫]]></data>
   <data name="zh_spotpoint786_tooltip"><![CDATA[玄关]]></data>
+
+
+  <data name="zh_pano848_title"><![CDATA[主卫]]></data>
 
 
 
