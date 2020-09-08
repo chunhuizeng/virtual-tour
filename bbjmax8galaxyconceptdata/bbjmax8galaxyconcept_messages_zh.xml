@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="zh_project_title"><![CDATA[BBJ MAX8 "Galaxy" Private Jet Concept]]></data>
+  <data name="zh_project_author_name"><![CDATA[HAECO PRIVATE JET SOLUTIONS]]></data>
+  <data name="zh_project_author_url"><![CDATA[http://www.taeco.com/s8.asp]]></data>
+
+
+
+  <data name="zh_pano22_title"><![CDATA[ENTRANCE]]></data>
+  <data name="zh_spotpoint38_tooltip"><![CDATA[FWD LOUNGE]]></data>
+
+
+  <data name="zh_pano36_title"><![CDATA[FWD LOUNGE]]></data>
+  <data name="zh_spotpoint41_tooltip"><![CDATA[DINING]]></data>
+  <data name="zh_spotpoint42_tooltip"><![CDATA[ENTRANCE]]></data>
+
+
+  <data name="zh_pano24_title"><![CDATA[DINING]]></data>
+  <data name="zh_spotpoint31_tooltip"><![CDATA[FWD LOUNGE]]></data>
+  <data name="zh_spotpoint34_tooltip"><![CDATA[AFT LOUNGE]]></data>
+
+
+  <data name="zh_pano32_title"><![CDATA[AFT LOUNGE]]></data>
+  <data name="zh_spotpoint35_tooltip"><![CDATA[DINING]]></data>
+  <data name="zh_spotpoint170_tooltip"><![CDATA[OFFICE]]></data>
+
+
+  <data name="zh_pano101_title"><![CDATA[OFFICE]]></data>
+  <data name="zh_spotpoint105_tooltip"><![CDATA[AFT LOUNGE]]></data>
+  <data name="zh_spotpoint106_tooltip"><![CDATA[BEDROOM]]></data>
+
+
+  <data name="zh_pano107_title"><![CDATA[BEDROOM]]></data>
+  <data name="zh_spotpoint109_tooltip"><![CDATA[OFFICE]]></data>
+  <data name="zh_spotpoint700_tooltip"><![CDATA[BATHROOM]]></data>
+
+
+  <data name="zh_pano657_title"><![CDATA[BATHROOM]]></data>
+  <data name="zh_spotpoint701_tooltip"><![CDATA[BEDROOM]]></data>
+
+
+
+
+
+
+  <data name="zh_logowebsiteurl"><![CDATA[http://www.taeco.com/s8.asp]]></data>
+  <data name="zh_logotooltipText"><![CDATA[Open website]]></data>
+  <data name="zh_contextmenuopenFsLabel"><![CDATA[Enter Fullscreen]]></data>
+  <data name="zh_contextmenucloseFsLabel"><![CDATA[Exit Fullscreen]]></data>
+  <data name="zh_contextmenunormallabel"><![CDATA[Normal View]]></data>
+  <data name="zh_contextmenuarchitecturallabel"><![CDATA[Architectural View]]></data>
+  <data name="zh_contextmenustereographiclabel"><![CDATA[Stereographic View]]></data>
+  <data name="zh_contextmenulittleplanetlabel"><![CDATA[Little Planet View]]></data>
+  <data name="zh_descriptiondisplay_close_text"><![CDATA[Close]]></data>
+  <data name="zh_togglebutton1firsttooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton1secondtooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton2firsttooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton2secondtooltip"><![CDATA[]]></data>
+  <data name="zh_buttontooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton3firsttooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton3secondtooltip"><![CDATA[]]></data>
+  <data name="zh_togglebutton4firsttooltip"><![CDATA[hide control]]></data>
+  <data name="zh_togglebutton4secondtooltip"><![CDATA[show control]]></data>
+  <data name="zh_button1tooltip"><![CDATA[Corporate Infomation]]></data>
+  <data name="zh_button1onclick117292websiteViewer|websiteViewer|toggle_websitewebsite_url"><![CDATA[./bbjmax8galaxyconceptdata/xtras/vcard.html]]></data>
+  <data name="zh_button1onclick117292websiteViewer|websiteViewer|toggle_websitewebsite_title"><![CDATA[HAECO Xiamen Contact Infomation]]></data>
+  <data name="zh_webvrbuttontooltip"><![CDATA[VR]]></data>
+  <data name="zh_websiteViewerfullscreen_text"><![CDATA[Fullscreen mode]]></data>
+  <data name="zh_websiteViewerclose_text"><![CDATA[Close]]></data>
+
+
+  <data name="zh_vr_setup_hmd0"><![CDATA[SELECT YOUR HMD]]></data>
+  <data name="zh_vr_setup_advanced"><![CDATA[ADVANCED SETTINGS]]></data>
+  <data name="zh_vr_setup_title"><![CDATA[WEB VR SETTINGS]]></data>
+  <data name="zh_vr_setup_dvn1"><![CDATA[Device:]]></data>
+  <data name="zh_vr_setup_siz1"><![CDATA[Screen size:]]></data>
+  <data name="zh_vr_setup_ipd1"><![CDATA[IPD:]]></data>
+  <data name="zh_vr_setup_hmd1"><![CDATA[HMD:]]></data>
+  <data name="zh_vr_setup_hmd3"><![CDATA[Customize]]></data>
+  <data name="zh_vr_setup_cal"><![CDATA[Calibrate gyroscope]]></data>
+  <data name="zh_vr_setup_sav"><![CDATA[SAVE]]></data>
+  <data name="zh_vr_setup_rst"><![CDATA[RESET]]></data>
+  <data name="zh_vr_setup_simple"><![CDATA[SIMPLE]]></data>
+  <data name="zh_vr_setup_cls"><![CDATA[CLOSE]]></data>
+  <data name="zh_vr_setup_m31"><![CDATA[HMD SETTINGS]]></data>
+  <data name="zh_vr_setup_fov1"><![CDATA[FOV:]]></data>
+  <data name="zh_vr_setup_dst1"><![CDATA[Distortion:]]></data>
+  <data name="zh_vr_setup_d2tx"><![CDATA[Distortion 2:]]></data>
+  <data name="zh_vr_setup_vig1"><![CDATA[Vignette:]]></data>
+  <data name="zh_vr_setup_cac1"><![CDATA[Chromatic aberration:]]></data>
+  <data name="zh_vr_setup_olp1"><![CDATA[Overlap:]]></data>
+  <data name="zh_vr_setup_m35"><![CDATA[RETURN]]></data>
+  <data name="zh_vr_setup_cb1"><![CDATA[GYROSCOPE]]></data>
+  <data name="zh_vr_setup_cb2"><![CDATA[Place the device on a flat and[br]stable surface and tab CALIBRATE[br]to correct a gyroscope drifting.]]></data>
+  <data name="zh_vr_setup_cb3"><![CDATA[CALIBRATE]]></data>
+  <data name="zh_vr_setup_cb4"><![CDATA[RESET]]></data>
+  <data name="zh_vr_setup_cb5"><![CDATA[RETURN]]></data>
+  <data name="zh_vr_setup_cb6"><![CDATA[Calibrating...]]></data>
+  <data name="zh_vr_setup_cb7"><![CDATA[Successful calibration]]></data>
+  <data name="zh_vr_setup_cb8"><![CDATA[Calibration failed]]></data>
+  <data name="zh_vr_setup_unavailable"><![CDATA[VR mode[br]is unavailable on your device]]></data>
+
+
+  <data name="zh_project_description"><![CDATA[<p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"></p><p style="language:en-US;line-height:54.0pt;mso-line-height-rule:exactly;margin-top:0pt;margin-bottom:0pt;text-align:left;direction:ltr;unicode-bidi:embed;vertical-align:baseline;mso-line-break-override:restrictions;punctuation-wrap:simple"><span style="font-size:12.0pt;font-family:Arial;mso-ascii-font-family:Arial;mso-fareast-font-family:黑体;mso-bidi-font-family:Arial;mso-fareast-theme-font:major-fareast;color:#3D3935;mso-color-index:1;mso-font-kerning:12.0pt;language:en-US;font-weight:bold;mso-style-textfill-type:solid;mso-style-textfill-fill-themecolor:text1;mso-style-textfill-fill-color:#3D3935;mso-style-textfill-fill-alpha:100.0%">THEDESIGN PHILOSOPHY</span></p><p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">Thiscabin concept was </span><span style="font-size: 12pt; font-family: Arial; color: rgb(61, 57, 53);">inspired</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);"> bythe beautiful curves of nature. </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">The entire cabin layout wascompact and smart</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">.Under the curvilinear lighting effects of the entire </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">cabinceiling, the free-form cabin space</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">, streamlined </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">floorand ceiling, are just </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">asa bright light strip in the starry </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">sky</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);"> </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">and giving people </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">apleasant </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">feeling,all add to the natural, dreamy, relaxed and </span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">v</span><span style="font-size: 12pt; font-family: Verdana; color: rgb(61, 57, 53);">ibrant space atmosphere that thecabin offers.</span></p>]]></data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</krpano>

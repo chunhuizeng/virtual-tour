@@ -1,0 +1,2305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano version="1.19">
+
+    
+  <!-- Spot Style - Load panorama -->
+
+
+  <style name="IconLoadpanorama"
+         url="%FIRSTXML%/spots/hotspot_direction_sequence_user_defaultpoint5.png"
+         visible="false"
+         frame="0"
+         lastframe="14"
+         framewidth="60"
+         frameheight="60"
+         stopspotsequence="false"
+         crop="0|0|60|60"
+         edge="center"
+         onloaded="startspotanimation(0.1);showPermanentTooltip(all);"
+
+
+         width="30"
+         height="prop"
+         />
+
+
+
+<!-- ********** -->
+<!-- Picture-copyright -->
+<!-- id : picture -->
+<!-- ********** -->
+
+  <layer name="picture"
+         keep="true"
+         url="%FIRSTXML%/graphics/picture/copyright2018.png" 
+         align="bottomright"
+         x="5"
+         y="0"
+         zorder="1"
+
+         handcursor="false"
+         enabled="false"
+
+         visible="false"
+         height="15"
+         width="prop"
+         />
+
+  <events name="pictureevents" 
+    onTourStart="showpicture(false);"
+    keep="true" />
+
+  <action name="hidepicture">set(layer[picture].visible, false);</action>
+  <action name="showpicture">if(%1 == true,set(layer[picture].visible, true);,set(layer[picture].visible, true););</action>
+
+<!-- ********** -->
+<!-- Logo -->
+<!-- id : logo -->
+<!-- ********** -->
+
+  <layer align="topleft"
+         x="10"
+         y="10"
+         zorder="2"
+         name="logo"
+         keep="true"
+         visible="false"
+         capture="false"
+
+			tooltip="logotooltipText"
+			onhover="showTooltip('plugin');"
+			onout="hideTooltip();"
+         url="%FIRSTXML%/graphics/logo/haeco_pjs_fullcolour_rgb.png" 
+         onclick="
+getmessage(urltoopen,logowebsiteurl);openurl(get(urltoopen),_blank);
+"
+
+         width="150"
+         height="prop"
+
+         />
+
+  <events name="logoevents" 
+    onTourStart="showlogo();"
+    keep="true" />
+
+  <action name="hidelogo">
+    set(layer[logo].visible, false);
+  </action>
+  <action name="showlogo">
+      set(layer[logo].visible, true);
+  </action>
+
+
+
+
+<!-- ********** -->
+<!-- Context menu -->
+<!-- id : contextmenu -->
+<!-- ********** -->
+  <contextmenu fullscreen="false" versioninfo="false" touch="true">
+    <item name="author" onclick="getmessage(urltoopen,project_author_url);openurl(get(urltoopen),_blank);" />
+    <item name="normal"        onclick="setViewNormal();
+" separator="true"/>
+    <item name="architectural" onclick="setViewArchitectural();
+"/>
+    <item name="stereographic" onclick="setViewStereographic();
+"/>
+    <item name="littleplanet"  onclick="setViewLittlePlanet();
+"/>
+    <item name="fullscreenentry" onclick="enterFullscreen();
+" separator="true"/>
+  </contextmenu>
+
+  <events name="contextmenuevents" keep="true" 
+    onenterfullscreen="updateContextMenu" onexitfullscreen="updateContextMenu" 
+    onxmlcomplete="updateContextMenu" 
+    changetourlanguage="updateContextMenu" 
+    />
+  <events name="contextmenuvrevents" keep="true" 
+    onvravailable="updateContextMenu();" onvrunavailable="updateContextMenu();"
+    devices="html5"
+    />
+  <action name="updateContextMenu">
+    getmessage(contextmenu.item[author].caption, project_author_name);
+    getmessage(contextmenu.item[normal].caption, contextmenunormallabel);
+    getmessage(contextmenu.item[architectural].caption, contextmenuarchitecturallabel);
+    set(sceneisfull360, false);
+    if(scene[get(xml.scene)].full360,
+      sub(viewhfov, panoview.hmax, panoview.hmin);
+      if (viewhfov == 360,
+        sub(viewvfov, panoview.vmax, panoview.vmin);
+        if (viewvfov == 180,
+          set(sceneisfull360, true);
+        );
+      );
+    );
+    if (sceneisfull360 AND (device.webgl OR device.flash),
+      set(contextmenu.item[stereographic].visible, true);
+      getmessage(contextmenu.item[stereographic].caption, contextmenustereographiclabel);
+      set(contextmenu.item[littleplanet].visible, true);
+      getmessage(contextmenu.item[littleplanet].caption, contextmenulittleplanetlabel);
+    ,
+      set(contextmenu.item[stereographic].visible, false);
+      set(contextmenu.item[littleplanet].visible, false);
+    );
+    if (device.fullscreensupport,
+      if(tour_fullscreen,
+        getmessage(contextmenu.item[fullscreenentry].caption, contextmenucloseFsLabel);
+        set(contextmenu.item[fullscreenentry].onclick, exitFullscreen();
+);
+       ,
+        getmessage(contextmenu.item[fullscreenentry].caption, contextmenuopenFsLabel);
+        set(contextmenu.item[fullscreenentry].onclick, enterFullscreen();
+);
+      );
+     ,
+      set(contextmenu.item[fullscreenentry].visible, false);
+    );
+  </action>
+
+<!-- ********** -->
+<!-- Description -->
+<!-- id : description -->
+<!-- ********** -->
+
+<ptplugin name="description" canStart="false" newPano="false" openatstart="false" mode="project" startMethod="showDescription_description" engine="kolorArea">
+	<settings>
+		<option name="position" value="center" type="string" />
+		<option name="start_position" value="top" type="string" />
+		<option name="margin_x" value="0" type="int" />
+		<option name="margin_y" value="0" type="int" />
+		<option name="background_color" value="f2f2f2" type="string" />
+		<option name="background_alpha" value="1" type="float" />
+		<option name="topleft_radius" value="10" type="int" />
+		<option name="topright_radius" value="10" type="int" />
+		<option name="bottomleft_radius" value="10" type="int" />
+		<option name="bottomright_radius" value="10" type="int" />
+		<option name="area_border_width" value="0" type="int" />
+		<option name="area_border_color" value="f2f2f2" type="string" />
+		<option name="area_border_alpha" value="1" type="float" />
+		<option name="padding" value="15" type="int" />
+		<option name="display_title" value="false" type="bool" />
+		<option name="close_displayed" value="true" type="bool" />
+		<option name="close_text" value="descriptiondisplay_close_text" type="string" />
+
+		<option name="overlay_displayed" value="true" type="bool" />
+		<option name="overlay_color" value="000000" type="string" />
+		<option name="overlay_alpha" value="0.50000762951094835" type="float" />
+
+		<option name="area_width" value="400" type="int" />
+		<option name="area_height" value="300" type="int" />
+		<option name="area_width_unit" value="pixel" type="string" />
+		<option name="area_height_unit" value="pixel" type="string" />
+		<option name="animation" value="true" type="bool" />
+		<option name="animation_duration" value="500" type="int" />
+		<option name="refresh_content" value="true" type="bool" />
+		<option name="close_callback" value="invokeKrFunction('closeKolorAreaCallback_description')" type="string" />
+		<option name="close_on_click" value="false" type="bool" />
+		<option name="zorder" value="4" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+</ptplugin>
+
+<action name="kolorAreaJsReady_description">
+	set(ptplugin[description].jsready, true);
+
+</action>
+
+
+<action name="openKolorArea_description">
+	ifnot(ptplugin[description].isOpen,
+		set(ptplugin[description].isOpen, true);
+		pauseautorotation(forceplugin);
+
+		js(showKolorArea(description, get(ptplugin[description].descID)));
+		events.dispatch(onremovedisplayedobject);
+	);
+</action>
+
+<action name="closeKolorArea_description">
+	if(ptplugin[description].isOpen,
+		js(invokePluginFunction(description, closeKolorArea));
+	);
+</action>
+
+<action name="toggleKolorArea_description">
+	if(ptplugin[description].isOpen,
+		closeKolorArea_description();
+	,
+		openKolorArea_description();
+	);
+</action>
+
+<action name="closeKolorAreaCallback_description">
+	if(ptplugin[description].isOpen,resumeautorotation(forceplugin);
+
+		
+	);
+	set(ptplugin[description].isOpen, false);
+	if(tour_displayinfo,hideTourInfo();
+
+	);
+</action>
+
+
+
+<action name="showKolorArea_description">
+	ifnot(ptplugin[description].startMethod == "",
+		delayedcall(0,get(ptplugin[description].startMethod));
+	,
+		set(ptplugin[description].isOpen, true);
+		pauseautorotation(forceplugin);
+
+		js(invokePluginFunction(description, showKolorArea, %1));
+		events.dispatch(onremovedisplayedobject);
+	);
+</action>
+	
+<action name="hideKolorArea_description">
+	resumeautorotation(forceplugin);
+
+	
+	set(ptplugin[description].isOpen, false);
+	js(invokePluginFunction(description, hideKolorArea, %1));
+</action>
+
+<action name="openDescription_description">
+	openKolorArea_description();
+</action>
+
+<action name="openSpotDescription_description">
+	set(ptplugin[description].descID, %1);
+	openKolorArea_description();
+</action>
+
+<action name="closeDescription_description">
+	set(ptplugin[description].currentGroup, false);
+	if(%1,
+		set(restore_description, true);
+	,
+		set(restore_description, false);
+	);
+	closeKolorArea_description();
+</action> 
+
+<action name="showDescription_description">
+	if(ptplugin[description].canStart,
+		set(ptplugin[description].descID, get(projectdescriptionid));
+		if(ptplugin[description].descID != "",
+			openDescription_description();
+		,
+			hideKolorArea_description(false);
+		);
+		set(ptplugin[description].startMethod, "");
+	);
+</action>
+
+
+
+<action name="changeLanguage_description">
+	if(ptplugin[description].jsready,
+		stopdelayedcall(delay_description);
+		js(invokePluginFunction(description, changeLanguage, true));
+	,
+		delayedcall(delay_description, 0.1, changeLanguage_description(););
+	);
+</action>
+
+<events name="kolorAreaEvents_description" 
+	keep="true"
+	onTourStart="set(ptplugin[description].canStart, true);if(ptplugin[description].openatstart,showTourInfo();
+);"
+	onshowtourinfo="if(tour_displayinfo,showDescription_description(););"
+	onhidetourinfo="if(ptplugin[description].isOpen,closeDescription_description(false););"
+	changetourlanguage="changeLanguage_description();"
+/>
+
+<!-- ********** -->
+<!-- Loading transition -->
+<!-- id : blendmode -->
+<!-- ********** -->
+	<action name="blendmode_prepareblendmode" autorun="preinit">
+
+			set(ptblendmode, 'BLEND(1, easeInCubic)');
+
+	</action>
+
+<!-- ********** -->
+<!-- Call actions on tour events -->
+<!-- id : eventsPlugin -->
+<!-- ********** -->
+
+  <events name="eventsPluginevents" keep="true"/>
+
+<!-- ********** -->
+<!-- Classic Thumbnails Bar -->
+<!-- id : thumbnailsBar-theme02 -->
+<!-- ********** -->
+
+
+
+
+
+
+<layer name="thumbnailsBar_thumbnailsBar_theme02" 
+	keep="true" 
+	type="image" 
+	visible="false"
+	align="bottom" 
+	
+		width="100%" 
+		height="0" 
+		accuracy="1"
+	
+	x="0"
+	y="80"
+	
+	url="%FIRSTXML%/graphics/classicthumbnailsbar/frame_bg.png" 
+	scale9grid="10|10|80|80"
+	
+	zorder="7"
+/>
+
+
+
+<layer name="thumbnailBorderSource_thumbnailsBar_theme02"
+	keep="true"
+	visible="false"
+	onloaded="loadedImages_thumbnailsBar_theme02(border);"
+	url="%FIRSTXML%/graphics/classicthumbnailsbar/thumbnails_states.png" 
+	offsetX="10"
+	offsetY="10"
+	quarterHeight="0"
+/>
+
+
+
+	
+	<krpano arrow1Loaded_thumbnailsBar_theme02="false" arrow2Loaded_thumbnailsBar_theme02="false" borderLoaded_thumbnailsBar_theme02="false" thumbnailsLoadedCounter_thumbnailsBar_theme02="0" thumbsCount_thumbnailsBar_theme02="0" thumbsCounter_thumbnailsBar_theme02="0" firstInit_thumbnailsBar_theme02="false" />
+	
+	
+	<events name="thumbnailsScrollEvents_thumbnailsBar_theme02" 
+		keep="true" 
+		
+		onxmlcomplete="ifnot(startResize_thumbnailsBar_theme02,set(isLoaded_thumbnailsBar_theme02, true);if(isStarted_thumbnailsBar_theme02,onLoadCompleteHandler_thumbnailsBar_theme02();););"
+		onTourStart="set(isStarted_thumbnailsBar_theme02, true);if(isLoaded_thumbnailsBar_theme02,onLoadCompleteHandler_thumbnailsBar_theme02(););"
+		onnewpano="if(startResize_thumbnailsBar_theme02,if(firstInit_thumbnailsBar_theme02,onLoadCompleteHandler_thumbnailsBar_theme02();););"
+		onresize="onResizeHandler_thumbnailsBar_theme02();"
+		hidetourthumbnails="hideWithThumbnailsButton_thumbnailsBar_theme02();" 
+		showtourthumbnails="showWithThumbnailsButton_thumbnailsBar_theme02();" 
+		hidetourcontrols="hideWithControlsBar_thumbnailsBar_theme02();" 
+		showtourcontrols="showWithControlsBar_thumbnailsBar_theme02();" 
+		onenterfullscreen="delayedcall(0.2,scrollToCurrentThumb_thumbnailsBar_theme02(););"
+		onexitfullscreen="delayedcall(0.2,scrollToCurrentThumb_thumbnailsBar_theme02(););"
+	/>
+	
+	
+	<layer name="scrollAreaContainer_thumbnailsBar_theme02" 
+		keep="true"
+		type="container" 
+		align="topleft"
+		x="3"
+		y="3"
+		
+		marginX="3"
+		marginY="3"
+		
+		width="0" 
+		height="0"
+		
+		targetWidth="0"
+		targetHeight="0"
+		
+		scrollSpeedInit="10"
+		scrollSpeed="10"
+		scrollSpeedMax="70"
+		scrollSpeedAcceleration="20"
+		
+		parent="thumbnailsBar_thumbnailsBar_theme02"
+		
+		thumbWidth="0"
+		thumbHeight="0"
+		
+		itemWidth="75"
+		itemHeight="50"
+		
+		offsetX="0"
+		offsetY="0"
+		
+		thumbSpacer="0"
+		currentThumbsCount="0"
+		
+		adjustToContent="false"
+		
+		zorder="1"
+		visible="false"
+		ready="false"
+	>
+	
+		
+		<layer name="thumbsScrollArea_thumbnailsBar_theme02" 
+			url="%FIRSTXML%/graphics/scrollarea.swf" 
+			alturl="%FIRSTXML%/graphics/scrollarea.js" 
+			align="bottom"
+			onhover_autoscrolling="false"
+			
+			x="0"
+			y="0"
+			 
+				direction="h" 
+		/>
+	
+	</layer>
+	
+	
+	
+	<layer name="scrollPrevArrow_thumbnailsBar_theme02" 
+		keep="true"
+		type="image"
+		visible="false"
+		parent="thumbnailsBar_thumbnailsBar_theme02"
+		targetHeight="0"
+		targetWidth="0"
+		zorder="2"
+		onloaded="loadedImages_thumbnailsBar_theme02(arrow1);"
+			url="%FIRSTXML%/graphics/classicthumbnailsbar/btn_scroll_left.png"
+			align="left"
+	/>
+	
+	
+	
+	<layer name="scrollNextArrow_thumbnailsBar_theme02" 
+		keep="true"
+		type="image"
+		visible="false"
+		parent="thumbnailsBar_thumbnailsBar_theme02"
+		targetHeight="0"
+		targetWidth="0"
+		zorder="2"
+		onloaded="loadedImages_thumbnailsBar_theme02(arrow2);"
+			url="%FIRSTXML%/graphics/classicthumbnailsbar/btn_scroll_right.png"
+			align="right"
+	/>
+	
+	<action name="loadedImages_thumbnailsBar_theme02">
+		if(%1 == "arrow1",
+			set(arrow1Loaded_thumbnailsBar_theme02, true);
+		);
+		if(%1 == "arrow2",
+			set(arrow2Loaded_thumbnailsBar_theme02, true);
+		);
+		if(%1 == "border",
+			if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+				set(borderLoaded_thumbnailsBar_theme02, true);
+			);
+		);
+		if(%1 == "thumbnail",
+			inc(thumbnailsLoadedCounter_thumbnailsBar_theme02);
+		);
+	</action>
+	
+	<action name="onLoadCompleteHandler_thumbnailsBar_theme02">
+		
+		set(thumbsCount_thumbnailsBar_theme02, 0);
+		
+		
+		set(thumbsCount_thumbnailsBar_theme02, get(scene.count));
+		
+		
+		
+		
+		
+		
+		
+		loadThumbs_thumbnailsBar_theme02();
+		
+		if(firstInit_thumbnailsBar_theme02,
+			onLoadCompleteHandlerPartThree_thumbnailsBar_theme02();
+		,
+			onLoadCompleteHandlerPartTwo_thumbnailsBar_theme02();
+		);
+	</action>
+	
+	<action name="onLoadCompleteHandlerPartTwo_thumbnailsBar_theme02">
+		set(imgCounter_thumbnailsBar_theme02, 3);
+		
+		if(arrow1Loaded_thumbnailsBar_theme02,
+			dec(imgCounter_thumbnailsBar_theme02);
+		);
+		if(arrow2Loaded_thumbnailsBar_theme02,
+			dec(imgCounter_thumbnailsBar_theme02);
+		);
+		if(thumbsCount_thumbnailsBar_theme02 == thumbnailsLoadedCounter_thumbnailsBar_theme02,
+			dec(imgCounter_thumbnailsBar_theme02);
+		);
+		
+		if(imgCounter_thumbnailsBar_theme02 LE 0,
+			stopdelayedcall(delayedCallOnLoadComplete_thumbnailsBar_theme02);
+			onLoadCompleteHandlerPartThree_thumbnailsBar_theme02();
+		,
+			delayedcall(delayedCallOnLoadComplete_thumbnailsBar_theme02, 0.2, onLoadCompleteHandlerPartTwo_thumbnailsBar_theme02());
+		);
+	</action>
+	
+	<action name="onLoadCompleteHandlerPartThree_thumbnailsBar_theme02">
+		resetMouseBehavior_thumbnailsBar_theme02();
+		highlightCurrentThumb_thumbnailsBar_theme02();
+		
+		
+		if(layer[scrollAreaContainer_thumbnailsBar_theme02].adjustToContent,
+			mul(adjustWidth_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].marginX), 2);
+			add(adjustWidth_thumbnailsBar_theme02, get(layer[thumbsScrollArea_thumbnailsBar_theme02].width));
+			mul(adjustHeight_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].marginY), 2);
+			add(adjustHeight_thumbnailsBar_theme02, get(layer[thumbsScrollArea_thumbnailsBar_theme02].height));
+			
+			
+			if(adjustWidth_thumbnailsBar_theme02 GT stagewidth,
+				set(adjustWidth_thumbnailsBar_theme02, get(stagewidth));
+				set(layer[scrollAreaContainer_thumbnailsBar_theme02].adjustToContent, false);
+			,
+				if(adjustHeight_thumbnailsBar_theme02 GT stageheight,
+					set(adjustHeight_thumbnailsBar_theme02, get(stageheight));
+					set(layer[scrollAreaContainer_thumbnailsBar_theme02].adjustToContent, false);
+				);
+			);
+			
+			setSize_thumbnailsBar_theme02(get(adjustWidth_thumbnailsBar_theme02), get(adjustHeight_thumbnailsBar_theme02));
+		);
+		
+		setupArrows_thumbnailsBar_theme02(true);
+		
+		
+		if (thumbsCounter_thumbnailsBar_theme02 LE 0,
+			set(layer[thumbnailsBar_thumbnailsBar_theme02].visible, false);
+		);
+		
+		
+		set(startResize_thumbnailsBar_theme02, true);
+		set(firstInit_thumbnailsBar_theme02, true);
+	</action>
+	
+	
+	<action name="onResizeHandler_thumbnailsBar_theme02">
+		
+		delayedcall(0.1, onResizeCallback_thumbnailsBar_theme02(false); );
+	</action>
+	
+	
+	<action name="onResizeCallback_thumbnailsBar_theme02">
+		if(startResize_thumbnailsBar_theme02,
+			setSize_thumbnailsBar_theme02(get(layer[scrollAreaContainer_thumbnailsBar_theme02].targetWidth), get(layer[scrollAreaContainer_thumbnailsBar_theme02].targetHeight));
+			setupArrows_thumbnailsBar_theme02(%1);
+			
+			
+			if (thumbsCounter_thumbnailsBar_theme02 LE 0,
+				set(layer[thumbnailsBar_thumbnailsBar_theme02].visible, false);
+			);
+		);
+	</action>
+	
+	
+		<action name="showWithThumbnailsButton_thumbnailsBar_theme02">
+			set(layer[thumbnailsBar_thumbnailsBar_theme02].visible, true);
+			onResizeCallback_thumbnailsBar_theme02(true);
+		</action>
+		
+		<action name="hideWithThumbnailsButton_thumbnailsBar_theme02">
+			set(layer[thumbnailsBar_thumbnailsBar_theme02].visible, false);
+		</action>
+	
+	
+		<action name="showWithControlsBar_thumbnailsBar_theme02">
+			
+				if (tour_displaythumbnails,
+					set(layer[thumbnailsBar_thumbnailsBar_theme02].visible, true);
+					onResizeCallback_thumbnailsBar_theme02(true);
+				,
+					set(layer[thumbnailsBar_thumbnailsBar_theme02].visible, false);
+				);
+		</action>
+		
+		<action name="hideWithControlsBar_thumbnailsBar_theme02">
+			set(layer[thumbnailsBar_thumbnailsBar_theme02].visible, false);
+		</action>
+	
+	
+	<action name="thumbnailBorderDrawInit_thumbnailsBar_theme02">
+		
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].offsetX, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderWidth));
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].offsetY, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderWidth));
+		
+		
+		mul(totalOffsetX_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderWidth), 2);
+		mul(totalOffsetY_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderWidth), 2);
+		
+		
+		if(startResize_thumbnailsBar_theme02,
+			sub(layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth, get(totalOffsetX_thumbnailsBar_theme02));
+			sub(layer[scrollAreaContainer_thumbnailsBar_theme02].itemHeight, get(totalOffsetY_thumbnailsBar_theme02));
+		);
+		
+		
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].thumbWidth, get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth));
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].thumbHeight, get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemHeight));
+		
+		add(layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth, get(totalOffsetX_thumbnailsBar_theme02));
+		add(layer[scrollAreaContainer_thumbnailsBar_theme02].itemHeight, get(totalOffsetY_thumbnailsBar_theme02));
+	</action>
+		
+	
+	<action name="thumbnailBorderImageInit_thumbnailsBar_theme02">
+		
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].offsetX, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].offsetX));
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].offsetY, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].offsetY));
+		
+		
+		mul(totalOffsetX_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].offsetX), 2);
+		mul(totalOffsetY_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].offsetY), 2);
+		
+		
+		if(startResize_thumbnailsBar_theme02,
+			sub(layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth, get(totalOffsetX_thumbnailsBar_theme02));
+			sub(layer[scrollAreaContainer_thumbnailsBar_theme02].itemHeight, get(totalOffsetY_thumbnailsBar_theme02));
+		);
+		
+		
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].thumbWidth, get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth));
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].thumbHeight, get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemHeight));
+		
+		add(layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth, get(totalOffsetX_thumbnailsBar_theme02));
+		add(layer[scrollAreaContainer_thumbnailsBar_theme02].itemHeight, get(totalOffsetY_thumbnailsBar_theme02));
+		
+		
+		div(layer[thumbnailBorderSource_thumbnailsBar_theme02].quarterHeight, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].height), 4);
+		
+		
+		set(cropX_thumbnailsBar_theme02, 0);
+		set(cropY_thumbnailsBar_theme02, 0);
+		set(cropW_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].width));
+		set(cropH_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].quarterHeight));
+		txtadd(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropDefault, get(cropX_thumbnailsBar_theme02), '|', get(cropY_thumbnailsBar_theme02), '|', get(cropW_thumbnailsBar_theme02), '|', get(cropH_thumbnailsBar_theme02));
+
+		
+		add(cropY_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].quarterHeight));
+		txtadd(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropHover, get(cropX_thumbnailsBar_theme02), '|', get(cropY_thumbnailsBar_theme02), '|', get(cropW_thumbnailsBar_theme02), '|', get(cropH_thumbnailsBar_theme02));
+		
+		
+		add(cropY_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].quarterHeight));
+		txtadd(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropSelected, get(cropX_thumbnailsBar_theme02), '|', get(cropY_thumbnailsBar_theme02), '|', get(cropW_thumbnailsBar_theme02), '|', get(cropH_thumbnailsBar_theme02));
+		
+		
+		add(cropY_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].quarterHeight));
+		txtadd(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropVisited, get(cropX_thumbnailsBar_theme02), '|', get(cropY_thumbnailsBar_theme02), '|', get(cropW_thumbnailsBar_theme02), '|', get(cropH_thumbnailsBar_theme02));
+		
+		
+		set(scaleX_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].offsetX));
+		set(scaleY_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].offsetY));
+		sub(scaleW_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].width), get(totalOffsetX_thumbnailsBar_theme02));
+		sub(scaleH_thumbnailsBar_theme02, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].quarterHeight), get(totalOffsetY_thumbnailsBar_theme02));
+		txtadd(layer[thumbnailBorderSource_thumbnailsBar_theme02].scale9grid, get(scaleX_thumbnailsBar_theme02), '|', get(scaleY_thumbnailsBar_theme02), '|', get(scaleW_thumbnailsBar_theme02), '|', get(scaleH_thumbnailsBar_theme02));
+	</action>
+	
+	
+	<action name="loadThumbs_thumbnailsBar_theme02">
+		if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+			set(imgCounter_thumbnailsBar_theme02, 1);
+		,
+			set(imgCounter_thumbnailsBar_theme02, 0);
+		);
+		
+		if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+			if(borderLoaded_thumbnailsBar_theme02,
+				dec(imgCounter_thumbnailsBar_theme02);
+			);
+		);
+		
+		if(imgCounter_thumbnailsBar_theme02 LE 0,
+			stopdelayedcall(delayedCallOnLoadCompleteBorder_thumbnailsBar_theme02);
+			loadThumbsPartTwo_thumbnailsBar_theme02();
+		,
+			delayedcall(delayedCallOnLoadCompleteBorder_thumbnailsBar_theme02, 0.2, loadThumbs_thumbnailsBar_theme02());
+		);
+	</action>
+	
+	<action name="loadThumbsPartTwo_thumbnailsBar_theme02">
+		ifnot(layer[scrollAreaContainer_thumbnailsBar_theme02].ready,
+			
+			
+			if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+				thumbnailBorderImageInit_thumbnailsBar_theme02();
+			,
+				thumbnailBorderDrawInit_thumbnailsBar_theme02();
+			);
+			
+			
+			set(thumbsCounter_thumbnailsBar_theme02, 0);
+			
+			
+				for( set(i_thumbnailsBar_theme02, 0), i_thumbnailsBar_theme02 LT scene.count, inc(i_thumbnailsBar_theme02),
+					createThumb_thumbnailsBar_theme02(get(scene[get(i_thumbnailsBar_theme02)].name), get(scene[get(i_thumbnailsBar_theme02)].thumburl), get(i_thumbnailsBar_theme02), get(scene[get(i_thumbnailsBar_theme02)].titleid));
+					inc(thumbsCounter_thumbnailsBar_theme02);
+				);
+			
+			
+			
+			
+			
+			
+			set(layer[scrollAreaContainer_thumbnailsBar_theme02].currentThumbsCount, get(thumbsCounter_thumbnailsBar_theme02));
+			
+			
+			setSize_thumbnailsBar_theme02(get(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].width), get(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].height));
+			
+			
+			set(layer[scrollAreaContainer_thumbnailsBar_theme02].visible, true);
+			
+			
+				if (tour_displaycontrols,
+					showWithControlsBar_thumbnailsBar_theme02();
+				,
+					hideWithControlsBar_thumbnailsBar_theme02();
+				);
+			
+			
+			set(layer[scrollAreaContainer_thumbnailsBar_theme02].ready, true);
+		);
+	</action>
+	
+	
+	<action name="setSize_thumbnailsBar_theme02">
+		
+		
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].targetWidth, %1);
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].targetHeight, %2);
+		
+		
+		set(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].width, %1);
+		set(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].height, %2);
+		layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].updatepos();
+		
+		
+		mul(totalMarginX_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].marginX), 2);
+		mul(totalMarginY_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].marginY), 2);
+		
+			add(totalPluginHeight_thumbnailsBar_theme02, get(totalMarginY_thumbnailsBar_theme02), get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemHeight));
+			
+			
+			
+			if(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].pixelheight LT totalPluginHeight_thumbnailsBar_theme02,
+				set(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].height, get(totalPluginHeight_thumbnailsBar_theme02));
+			);
+		
+		layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].updatepos();
+		
+		
+		sub(containerWidth_thumbnailsBar_theme02, get(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].pixelwidth), get(totalMarginX_thumbnailsBar_theme02));
+		sub(containerHeight_thumbnailsBar_theme02, get(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].pixelheight), get(totalMarginY_thumbnailsBar_theme02));
+
+		
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].width, get(containerWidth_thumbnailsBar_theme02));
+		set(layer[scrollAreaContainer_thumbnailsBar_theme02].height, get(containerHeight_thumbnailsBar_theme02));
+		
+		set(scrollAreaSize_thumbnailsBar_theme02, 0);
+		
+		
+		mul(totalThumbsSpacer_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].currentThumbsCount), get(layer[scrollAreaContainer_thumbnailsBar_theme02].thumbSpacer));
+		sub(totalThumbsSpacer_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].thumbSpacer));
+		
+		set(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].visible, true);
+		
+
+			mul(scrollAreaSize_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth), get(layer[scrollAreaContainer_thumbnailsBar_theme02].currentThumbsCount));
+			add(scrollAreaSize_thumbnailsBar_theme02, get(totalThumbsSpacer_thumbnailsBar_theme02));
+			
+			set(layer[thumbsScrollArea_thumbnailsBar_theme02].width, get(scrollAreaSize_thumbnailsBar_theme02));
+			set(layer[thumbsScrollArea_thumbnailsBar_theme02].height, get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemHeight));
+			
+			
+			if(layer[scrollAreaContainer_thumbnailsBar_theme02].width LT layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth,
+				set(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].visible, false);
+			,
+				verifyThumbnailsBarVisibility_thumbnailsBar_theme02();
+			);
+			
+		
+		
+		if(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].width LT 0,
+			set(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].visible, false);
+		);
+		
+	</action>
+	
+	
+	<action name="verifyThumbnailsBarVisibility_thumbnailsBar_theme02">
+		if(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].visible,
+			set(boolValue_thumbnailsBar_theme02, false);
+			
+			if (tour_displaythumbnails,
+				if (tour_displaycontrols,
+					set(boolValue_thumbnailsBar_theme02, true);
+				);
+			);
+			
+			set(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].visible, get(boolValue_thumbnailsBar_theme02));
+		);
+	</action>
+	
+	
+	<action name="createThumb_thumbnailsBar_theme02">
+
+			add(offsetFactor_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth), get(layer[scrollAreaContainer_thumbnailsBar_theme02].thumbSpacer));
+	
+			mul(thumbIncPos_thumbnailsBar_theme02, %3, get(offsetFactor_thumbnailsBar_theme02));
+			
+			
+			if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+				add(thumbIncPos_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].offsetX));
+			);
+			
+		
+		mul(negativeOffsetX_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].offsetX), -1);
+		mul(negativeOffsetY_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].offsetY), -1);
+		
+		set(thumbName, 'thumb_');
+		txtadd(thumbName, %1);
+		txtadd(thumbName, '_thumbnailsBar_theme02');
+		addlayer(get(thumbName));
+		
+		set(thumbBorderName, 'thumbBorder_');
+		txtadd(thumbBorderName, %1);
+		txtadd(thumbBorderName, '_thumbnailsBar_theme02');
+		addlayer(get(thumbBorderName));
+		
+		
+		ifnot(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+			set(layer[get(thumbBorderName)].type, container);
+			set(layer[get(thumbBorderName)].parent, thumbsScrollArea_thumbnailsBar_theme02);
+		);
+		
+		
+		set(layer[get(thumbName)].onloaded, loadedImages_thumbnailsBar_theme02("thumbnail"););
+		set(layer[get(thumbName)].url, %2);
+		set(layer[get(thumbName)].keep, true);
+		set(layer[get(thumbName)].width, get(layer[scrollAreaContainer_thumbnailsBar_theme02].thumbWidth));
+		set(layer[get(thumbName)].height, get(layer[scrollAreaContainer_thumbnailsBar_theme02].thumbHeight));
+		set(layer[get(thumbName)].align, topleft);
+		
+		
+			set(layer[get(thumbName)].y, get(layer[scrollAreaContainer_thumbnailsBar_theme02].offsetY));
+		
+			if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+				set(layer[get(thumbName)].parent, thumbsScrollArea_thumbnailsBar_theme02);
+				set(layer[get(thumbName)].x, get(thumbIncPos_thumbnailsBar_theme02));
+			,
+				set(layer[get(thumbName)].parent, get(thumbBorderName));
+				set(layer[get(thumbName)].x, get(layer[scrollAreaContainer_thumbnailsBar_theme02].offsetX));
+				set(layer[get(thumbName)].onclick, resetMouseBehavior_thumbnailsBar_theme02(); mainloadscene(%1); delayedcall(0.1,highlightThumb_thumbnailsBar_theme02(%1)));
+			);	
+			
+		
+		
+		set(layer[get(thumbBorderName)].keep, true);
+		set(layer[get(thumbBorderName)].width, get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth));
+		set(layer[get(thumbBorderName)].height, get(layer[scrollAreaContainer_thumbnailsBar_theme02].itemHeight));
+		set(layer[get(thumbBorderName)].align, topleft);
+		
+		if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+			set(layer[get(thumbBorderName)].url, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].url));
+			set(layer[get(thumbBorderName)].scale9grid, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].scale9grid));
+			set(layer[get(thumbBorderName)].parent, get(thumbName));
+			set(layer[get(thumbBorderName)].x, get(negativeOffsetX_thumbnailsBar_theme02));
+			set(layer[get(thumbBorderName)].y, get(negativeOffsetY_thumbnailsBar_theme02));
+			set(layer[get(thumbBorderName)].onclick, resetMouseBehavior_thumbnailsBar_theme02(); mainloadscene(%1); delayedcall(0.1,highlightThumb_thumbnailsBar_theme02(%1)));
+		,
+			
+				set(layer[get(thumbBorderName)].x, get(thumbIncPos_thumbnailsBar_theme02)); 
+				
+		);
+		
+		
+		setupMouseBehavior_thumbnailsBar_theme02(%1, %4);
+		
+	</action>
+	
+	
+	<action name="removeThumb_thumbnailsBar_theme02">
+		set(thumbName, 'thumb_');
+		txtadd(thumbName, %1);
+		txtadd(thumbName, '_thumbnailsBar_theme02');
+		removelayer(get(thumbName));
+		
+		set(thumbBorderName, 'thumbBorder_');
+		txtadd(thumbBorderName, %1);
+		txtadd(thumbBorderName, '_thumbnailsBar_theme02');
+		removelayer(get(thumbBorderName));
+	</action>
+	
+	
+	
+	<action name="setupArrows_thumbnailsBar_theme02">
+		
+		if(layer[scrollAreaContainer_thumbnailsBar_theme02].adjustToContent,
+			hideArrows_thumbnailsBar_theme02();
+		,
+			ifnot(device.touchdevice,
+				
+					if(layer[scrollAreaContainer_thumbnailsBar_theme02].width LT layer[thumbsScrollArea_thumbnailsBar_theme02].width,
+				
+					showArrows_thumbnailsBar_theme02();
+				,
+					hideArrows_thumbnailsBar_theme02();
+				);
+			,
+				hideArrows_thumbnailsBar_theme02();
+			);
+		);
+		
+		
+		if(%1,
+			scrollToCurrentThumb_thumbnailsBar_theme02();
+		);
+		
+		
+			
+			if(layer[scrollAreaContainer_thumbnailsBar_theme02].width LT layer[scrollAreaContainer_thumbnailsBar_theme02].itemWidth,
+				set(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].visible, false);
+			);
+	</action>
+	
+	
+	<action name="showArrows_thumbnailsBar_theme02">
+		
+		
+		
+		
+		set(layer[scrollPrevArrow_thumbnailsBar_theme02].visible, true);
+		set(layer[scrollNextArrow_thumbnailsBar_theme02].visible, true);
+		
+		
+		
+			
+			add(totalArrowSize_thumbnailsBar_theme02, get(layer[scrollPrevArrow_thumbnailsBar_theme02].width), get(layer[scrollNextArrow_thumbnailsBar_theme02].width));
+		
+			
+			sub(scrollAreaContainerSize_thumbnailsBar_theme02, get(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].pixelwidth), get(totalArrowSize_thumbnailsBar_theme02));
+		
+			set(layer[scrollAreaContainer_thumbnailsBar_theme02].width, get(scrollAreaContainerSize_thumbnailsBar_theme02));
+			
+			set(layer[scrollAreaContainer_thumbnailsBar_theme02].x, get(layer[scrollPrevArrow_thumbnailsBar_theme02].width));
+			
+		
+		
+		set(layer[scrollPrevArrow_thumbnailsBar_theme02].onhover, scrollPrev_thumbnailsBar_theme02(););
+		set(layer[scrollNextArrow_thumbnailsBar_theme02].onhover, scrollNext_thumbnailsBar_theme02(););
+		
+		set(layer[scrollPrevArrow_thumbnailsBar_theme02].onclick, scrollPrev_thumbnailsBar_theme02(get(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeedAcceleration)););
+		set(layer[scrollNextArrow_thumbnailsBar_theme02].onclick, scrollNext_thumbnailsBar_theme02(get(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeedAcceleration)););
+		
+		
+		
+		
+		
+		set(layer[scrollPrevArrow_thumbnailsBar_theme02].onout, set(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed, get(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeedInit)););
+		set(layer[scrollNextArrow_thumbnailsBar_theme02].onout, set(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed, get(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeedInit)););
+		
+	</action>
+	
+	
+	
+	
+	<action name="hideArrows_thumbnailsBar_theme02">
+		
+		set(layer[scrollPrevArrow_thumbnailsBar_theme02].visible, false);
+		set(layer[scrollNextArrow_thumbnailsBar_theme02].visible, false);
+		
+		
+
+			mul(totalMargin_thumbnailsBar_theme02, get(layer[scrollAreaContainer_thumbnailsBar_theme02].marginX), 2);
+			
+			sub(scrollAreaContainerSize_thumbnailsBar_theme02, get(layer[get(layer[scrollAreaContainer_thumbnailsBar_theme02].parent)].pixelwidth), get(totalMargin_thumbnailsBar_theme02));
+
+			set(layer[scrollAreaContainer_thumbnailsBar_theme02].width, get(scrollAreaContainerSize_thumbnailsBar_theme02));
+			set(layer[scrollAreaContainer_thumbnailsBar_theme02].x, get(layer[scrollAreaContainer_thumbnailsBar_theme02].marginX));
+			 
+			
+	</action>
+	
+	
+	<action name="scrollPrev_thumbnailsBar_theme02">
+		
+		
+		if(%1,
+			inc(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed, %1);
+		);
+		
+		layer[thumbsScrollArea_thumbnailsBar_theme02].stopscrolling();
+		
+		set(scrollLimit_thumbnailsBar_theme02, 0);
+		
+		
+			
+				sub(scrollLimit_thumbnailsBar_theme02, get(layer[thumbsScrollArea_thumbnailsBar_theme02].width), get(layer[scrollAreaContainer_thumbnailsBar_theme02].width));
+				div(scrollLimit_thumbnailsBar_theme02, 2);
+			
+			add(layer[thumbsScrollArea_thumbnailsBar_theme02].x, get(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed));
+			if(layer[thumbsScrollArea_thumbnailsBar_theme02].x GE scrollLimit_thumbnailsBar_theme02,
+				set(layer[thumbsScrollArea_thumbnailsBar_theme02].x, get(scrollLimit_thumbnailsBar_theme02));
+			);
+		
+		if(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed LT layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeedMax,
+			inc(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed);
+		);
+		
+	</action>
+	
+	
+	<action name="scrollNext_thumbnailsBar_theme02">
+		
+		
+		if(%1,
+			inc(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed, %1);
+		);
+		
+		layer[thumbsScrollArea_thumbnailsBar_theme02].stopscrolling();
+		
+			
+			sub(scrollLimit_thumbnailsBar_theme02, get(layer[thumbsScrollArea_thumbnailsBar_theme02].width), get(layer[scrollAreaContainer_thumbnailsBar_theme02].width));
+			
+				div(scrollLimit_thumbnailsBar_theme02, 2);
+			mul(scrollLimit_thumbnailsBar_theme02, -1);
+			
+			sub(layer[thumbsScrollArea_thumbnailsBar_theme02].x, get(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed));
+			if(layer[thumbsScrollArea_thumbnailsBar_theme02].x LE scrollLimit_thumbnailsBar_theme02,
+				set(layer[thumbsScrollArea_thumbnailsBar_theme02].x, get(scrollLimit_thumbnailsBar_theme02));
+			);
+		
+		if(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed LT layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeedMax,
+			inc(layer[scrollAreaContainer_thumbnailsBar_theme02].scrollSpeed);
+		);
+		
+	</action>
+	
+	
+	<action name="resetMouseBehavior_thumbnailsBar_theme02">
+	
+		
+		
+			for( set(j_thumbnailsBar_theme02, 0), j_thumbnailsBar_theme02 LT scene.count, inc(j_thumbnailsBar_theme02),
+				set(thumbBorderName, 'thumbBorder_');
+				txtadd(thumbBorderName, get(scene[get(j_thumbnailsBar_theme02)].name));
+				txtadd(thumbBorderName, '_thumbnailsBar_theme02');
+				
+				setupMouseBehavior_thumbnailsBar_theme02(get(scene[get(j_thumbnailsBar_theme02)].name), get(scene[get(j_thumbnailsBar_theme02)].titleid));
+			);
+		
+	</action>
+	
+	
+	<action name="setupMouseBehavior_thumbnailsBar_theme02">
+
+		set(thumbName, 'thumb_');
+		txtadd(thumbName, %1);
+		txtadd(thumbName, '_thumbnailsBar_theme02');
+		
+		set(thumbBorderName, 'thumbBorder_');
+		txtadd(thumbBorderName, %1);
+		txtadd(thumbBorderName, '_thumbnailsBar_theme02');
+		
+		if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+			set(layer[get(thumbBorderName)].crop, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropDefault));
+			set(layer[get(thumbBorderName)].onovercrop, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropHover));
+			set(layer[get(thumbBorderName)].ondowncrop, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropHover));
+			set(layer[get(thumbBorderName)].tooltip, %2);
+		,
+			set(layer[get(thumbBorderName)].bgcolor, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderColorDefault));
+			set(layer[get(thumbBorderName)].bgalpha, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderAlphaDefault));
+			
+			set(layer[get(thumbName)].onover, 
+				set(layer[get(parent)].bgcolor, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderColorHover));
+				set(layer[get(parent)].bgalpha, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderAlphaHover));
+			);
+			
+			set(layer[get(thumbName)].onout, 
+				set(layer[get(parent)].bgcolor, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderColorDefault));
+				set(layer[get(parent)].bgalpha, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderAlphaDefault));
+				
+			);
+		);
+	
+	</action>
+	
+	
+	<action name="highlightCurrentThumb_thumbnailsBar_theme02">
+			delayedcall(0.1,highlightThumb_thumbnailsBar_theme02(get(xml.scene)));
+	</action>
+	
+	
+	<action name="highlightThumb_thumbnailsBar_theme02">
+	
+		set(thumbBorderName, 'thumbBorder_');
+		txtadd(thumbBorderName, %1);
+		txtadd(thumbBorderName, '_thumbnailsBar_theme02');
+		
+		if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+			set(layer[get(thumbBorderName)].crop, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropSelected));
+			set(layer[get(thumbBorderName)].onovercrop, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropSelected));
+			set(layer[get(thumbBorderName)].ondowncrop, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].cropSelected));
+		,
+			set(thumbName, 'thumb_');
+			txtadd(thumbName, %1);
+			txtadd(thumbName, '_thumbnailsBar_theme02');
+			
+			set(layer[get(thumbBorderName)].bgcolor, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderColorSelected));
+			set(layer[get(thumbBorderName)].bgalpha, get(layer[thumbnailBorderSource_thumbnailsBar_theme02].borderAlphaSelected));
+			
+			set(layer[get(thumbName)].onover, "");
+			set(layer[get(thumbName)].onout, "");
+		);
+
+		scrollToThumb_thumbnailsBar_theme02(%1);
+	</action>
+	
+	
+	<action name="scrollToCurrentThumb_thumbnailsBar_theme02">
+			scrollToThumb_thumbnailsBar_theme02(get(xml.scene));
+	</action>
+	
+	
+	<action name="scrollToThumb_thumbnailsBar_theme02">
+		
+		set(thumbName, 'thumb_');
+		set(thumbBorderName, 'thumbBorder_');
+		
+		txtadd(thumbName, %1);
+		txtadd(thumbName, '_thumbnailsBar_theme02');
+		txtadd(thumbBorderName, %1);
+		txtadd(thumbBorderName, '_thumbnailsBar_theme02');
+
+			set(posX_thumbnailsBar_theme02, 0);
+			if(layer[thumbnailBorderSource_thumbnailsBar_theme02].url,
+				div(halfThumbWidth_thumbnailsBar_theme02, get(layer[get(thumbName)].width), 2);
+				ifnot(layer[scrollAreaContainer_thumbnailsBar_theme02].adjustToContent,
+					add(posX_thumbnailsBar_theme02, get(layer[get(thumbName)].x), get(halfThumbWidth_thumbnailsBar_theme02));
+				);
+				if(layer[thumbsScrollArea_thumbnailsBar_theme02].scrolltocenter,
+					layer[thumbsScrollArea_thumbnailsBar_theme02].scrolltocenter(get(posX_thumbnailsBar_theme02), 0);
+				);
+			,
+				div(halfThumbWidth_thumbnailsBar_theme02, get(layer[get(thumbBorderName)].width), 2);
+				ifnot(layer[scrollAreaContainer_thumbnailsBar_theme02].adjustToContent,
+					add(posX_thumbnailsBar_theme02, get(layer[get(thumbBorderName)].x), get(halfThumbWidth_thumbnailsBar_theme02));
+				);
+				if(layer[thumbsScrollArea_thumbnailsBar_theme02].scrolltocenter,
+					layer[thumbsScrollArea_thumbnailsBar_theme02].scrolltocenter(get(posX_thumbnailsBar_theme02), 0);
+				);
+			);
+		
+	</action>
+	
+
+
+
+
+
+<!-- ********** -->
+<!-- Music_start_stop -->
+<!-- id : togglebutton1 -->
+<!-- ********** -->
+
+
+
+  <layer name="togglebutton1"
+         keep="true"
+         url="%FIRSTXML%/graphics/togglebutton1/btn_stop_sound.png" 
+         align="bottom"
+         x="92"
+         y="10"
+         zorder="8"
+         state="true"
+         onclick="togglebutton1OnClick"
+         onout=""
+         width="36"
+         height="prop"
+         visible="false"
+         />
+
+  <action name="togglebutton1OnClick">
+    if (state,
+      set(state, false);stopTourSounds();
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton1/btn_start_sound.png);
+     ,
+      set(state, true);playTourSounds();
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton1/btn_stop_sound.png);
+    );
+  </action>
+
+  <events name="togglebutton1events" 
+    onTourStart="showtogglebutton1();"
+    hidetourcontrols="hidetogglebutton1();" 
+    showtourcontrols="showtogglebutton1();" 
+    keep="true" />
+  <action name="hidetogglebutton1">set(layer[togglebutton1].visible, false);</action>
+  <action name="showtogglebutton1">if(tour_displaycontrols,set(layer[togglebutton1].visible, true);,hidetogglebutton1(););</action>
+
+
+<!-- ********** -->
+<!-- autoratation_start_stop -->
+<!-- id : togglebutton2 -->
+<!-- ********** -->
+
+
+
+  <layer name="togglebutton2"
+         keep="true"
+         url="%FIRSTXML%/graphics/togglebutton2/btn_stop_autorotation.png" 
+         align="bottom"
+         x="46"
+         y="10"
+         zorder="9"
+         state="true"
+         onclick="togglebutton2OnClick"
+         onout=""
+         width="36"
+         height="prop"
+         visible="false"
+         />
+
+  <action name="togglebutton2OnClick">
+    if (state,
+      set(state, false);stopautorotation();
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton2/btn_start_autorotation.png);
+     ,
+      set(state, true);startautorotation();
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton2/btn_stop_autorotation.png);
+    );
+  </action>
+
+  <events name="togglebutton2events" 
+    onTourStart="showtogglebutton2();"
+    hidetourcontrols="hidetogglebutton2();" 
+    showtourcontrols="showtogglebutton2();" 
+    keep="true" />
+  <action name="hidetogglebutton2">set(layer[togglebutton2].visible, false);</action>
+  <action name="showtogglebutton2">if(tour_displaycontrols,set(layer[togglebutton2].visible, true);,hidetogglebutton2(););</action>
+
+
+<!-- ********** -->
+<!-- Info -->
+<!-- id : button -->
+<!-- ********** -->
+
+  <layer name="button"
+         keep="true"
+         url="%FIRSTXML%/graphics/button/btn_info.png"
+         align="bottom"
+         x="-46"
+         y="10"
+         zorder="10"
+         visible="false"
+         onclick="buttonOnClick"
+         width="36"
+         height="prop"
+         />
+
+
+
+  <action name="buttonOnClick">
+showTourInfo();
+
+
+
+
+  </action>
+
+  <events name="buttonevents"
+    onTourStart="showbutton();"
+    hidetourcontrols="hidebutton();"
+    showtourcontrols="showbutton();"
+    keep="true" />
+  <action name="hidebutton">set(layer[button].visible, false);</action>
+  <action name="showbutton">if(tour_displaycontrols,set(layer[button].visible, true);,hidebutton(););</action>
+
+
+<!-- ********** -->
+<!-- Thumbnail_show_hide -->
+<!-- id : togglebutton3 -->
+<!-- ********** -->
+
+
+
+  <layer name="togglebutton3"
+         keep="true"
+         url="%FIRSTXML%/graphics/togglebutton3/btn_hide_thumbnails.png" 
+         align="bottom"
+         x="-92"
+         y="10"
+         zorder="11"
+         state="true"
+         onclick="togglebutton3OnClick"
+         onout=""
+         width="36"
+         height="prop"
+         visible="false"
+         />
+
+  <action name="togglebutton3OnClick">
+    if (state,
+      set(state, false);hideTourThumbnails();
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton3/btn_show_thumbnails.png);
+     ,
+      set(state, true);showTourThumbnails();
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton3/btn_hide_thumbnails.png);
+    );
+  </action>
+
+  <events name="togglebutton3events" 
+    onTourStart="showtogglebutton3();"
+    hidetourcontrols="hidetogglebutton3();" 
+    showtourcontrols="showtogglebutton3();" 
+    keep="true" />
+  <action name="hidetogglebutton3">set(layer[togglebutton3].visible, false);</action>
+  <action name="showtogglebutton3">if(tour_displaycontrols,set(layer[togglebutton3].visible, true);,hidetogglebutton3(););</action>
+
+
+<!-- ********** -->
+<!-- btn-show-hide -->
+<!-- id : togglebutton4 -->
+<!-- ********** -->
+
+
+
+  <layer name="togglebutton4"
+         keep="true"
+         url="%FIRSTXML%/graphics/togglebutton4/btn_hide_controls_edit.png" 
+         align="bottom"
+         x="0"
+         y="10"
+         zorder="12"
+         tooltip=""
+         onhover="togglebutton4OnHover"
+         state="true"
+         onclick="togglebutton4OnClick"
+         onout="hideTooltip();"
+         width="36"
+         height="prop"
+         visible="false"
+         />
+
+  <action name="togglebutton4OnHover">
+    if (state,
+      set(tooltip, togglebutton4firsttooltip);
+     ,
+      set(tooltip, togglebutton4secondtooltip);
+    );
+    if (tooltip != "", showTooltip('plugin'););
+  </action>
+  <action name="togglebutton4OnClick">
+    if (state,
+      set(state, false);hideTourControls();
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton4/btn_show_controls_edit.png);
+     ,
+      set(state, true);showTourControls();
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton4/btn_hide_controls_edit.png);
+    );
+  </action>
+
+  <events name="togglebutton4events" 
+    onTourStart="showtogglebutton4();"
+    keep="true" />
+  <action name="hidetogglebutton4">set(layer[togglebutton4].visible, false);</action>
+  <action name="showtogglebutton4">set(layer[togglebutton4].visible, true);</action>
+
+
+<!-- ********** -->
+<!-- Info-Vcard -->
+<!-- id : button1 -->
+<!-- ********** -->
+
+  <layer name="button1"
+         keep="true"
+         url="%FIRSTXML%/graphics/button1/vcard-icon_36xedit.png"
+         align="topright"
+         x="10"
+         y="106"
+         zorder="13"
+         visible="false"
+         onclick="button1OnClick"
+         tooltip="button1tooltip"
+         onhover="showTooltip('plugin',button1TooltipStyle);"
+         onout="hideTooltip();"
+         height="32"
+         width="32"
+         />
+
+
+
+  <action name="button1OnClick">if(ptplugin[websiteViewer].isOpen,closeKolorBox_websiteViewer();,openWebsite_websiteViewer(button1onclick117292websiteViewer|websiteViewer|toggle_websitewebsite_url, button1onclick117292websiteViewer|websiteViewer|toggle_websitewebsite_title););
+
+
+  </action>
+
+  <events name="button1events"
+    onTourStart="showbutton1();"
+    hidetourcontrols="hidebutton1();"
+    showtourcontrols="showbutton1();"
+    keep="true" />
+  <action name="hidebutton1">set(layer[button1].visible, false);</action>
+  <action name="showbutton1">if(tour_displaycontrols,set(layer[button1].visible, true);,hidebutton1(););</action>
+
+<layer name="button1TooltipStyle"
+  keep="true"
+  enabled="false"
+  capture="false"
+  type="text"
+  align="center"
+  bg="false"
+  bgborder="0"
+  txtshadow="1.0 1.0 4.0 0x000000 1"
+  css="color:#ffffff;font-family:Arial;font-weight:bold;font-size:14px;text-align:left;"
+  interactivecontent="false"
+  zorder="0"
+  padding="2"
+  xoffset="0"
+  yoffset="0"
+  visible="false"
+  html=""
+  edge="top"
+/>
+
+<!-- ********** -->
+<!-- WebVR Button -->
+<!-- id : webvrbutton -->
+<!-- ********** -->
+
+	<layer name="webvrbutton"
+		keep="true"
+		blocked="false"
+		alpha="1"
+		url="%FIRSTXML%/graphics/webvrbutton/btn_webvr.png" 
+		align="topright"
+		x="10"
+		y="60"
+		zorder="14"
+		visible="false"
+		onclick="if(scene[get(xml.scene)].full360,
+    js(accessWebVr(get(xml.scene),get(videoscenestarttime)));
+,
+    js(accessWebVr(null));
+);"
+		tooltip="webvrbuttontooltip"
+		onhover="showTooltip('plugin');"
+		onout="hideTooltip();"
+
+		width="32"
+		height="prop"
+		crop="0|0|100|63"
+		/>
+
+	<events name="webvrbuttonevents"
+		onvrunavailable="hidewebvrbutton(true);"
+		onTourStart="showwebvrbutton();"
+		hidetourcontrols="hidewebvrbutton();" 
+		showtourcontrols="showwebvrbutton();" 
+		keep="true" />
+	<action name="hidewebvrbutton">if(%1 == true,set(layer[webvrbutton].blocked, true););set(layer[webvrbutton].visible, false);</action>
+	<action name="showwebvrbutton">if(tour_displaycontrols,if(layer[webvrbutton].blocked == false,set(layer[webvrbutton].visible, true););,hidewebvrbutton(););</action>
+
+
+<!-- ********** -->
+<!-- Website Box -->
+<!-- id : websiteViewer -->
+<!-- ********** -->
+
+<ptplugin name="websiteViewer" engine="kolorBox">
+	<settings>
+		<option name="position" value="center" type="string" />
+		<option name="margin_x" value="0" type="int" />
+		<option name="margin_y" value="0" type="int" />
+		<option name="external_padding" value="30" type="int" />
+		<option name="draggable_box" value="false" type="bool" />
+		<option name="container_auto_size" value="true" type="bool" />
+		<option name="container_width" value="600" type="int" />
+		<option name="container_width_unit" value="pixel" type="string" />
+		<option name="container_height" value="300" type="int" />
+		<option name="container_height_unit" value="pixel" type="string" />
+		<option name="container_color" value="ffffff" type="string" />
+		<option name="container_alpha" value="1" type="float" />
+		<option name="container_topleft_border_radius" value="15" type="int" />
+		<option name="container_topright_border_radius" value="15" type="int" />
+		<option name="container_bottomleft_border_radius" value="15" type="int" />
+		<option name="container_bottomright_border_radius" value="15" type="int" />
+		<option name="container_border_width" value="0" type="int" />
+		<option name="container_border_color" value="0b8ca0" type="string" />
+		<option name="container_border_alpha" value="1" type="float" />
+		<option name="overlay_displayed" value="true" type="bool" />
+		<option name="overlay_color" value="000000" type="string" />
+		<option name="overlay_alpha" value="0.50000762951094835" type="float" />
+
+		<option name="title_displayed" value="true" type="bool" />
+		<option name="title_position" value="top" type="string" />
+		<option name="title_font" value="Verdana" type="string" />
+		<option name="title_size" value="20" type="int" />
+		<option name="title_weight" value="bold" type="string" />
+		<option name="title_style" value="normal" type="string" />
+		<option name="title_decoration" value="none" type="string" />
+		<option name="title_color" value="000000" type="string" />
+		<option name="caption_displayed" value="false" type="bool" />
+		<option name="iframe_scrolling" value="auto" type="string" />
+		<option name="iframe_default_width" value="600" type="int" />
+		<option name="iframe_default_height" value="400" type="int" />
+		<option name="iframe_devices_width" value="600" type="int" />
+		<option name="iframe_devices_height" value="400" type="int" />
+		<option name="force_ios_scrolling" value="true" type="bool" />
+		<option name="fullscreen_displayed" value="true" type="bool" />
+		<option name="fullscreen_position" value="topleft" type="string" />
+		<option name="fullscreen_text" value="websiteViewerfullscreen_text" type="string" />
+
+
+
+
+		<option name="close_displayed" value="true" type="bool" />
+		<option name="close_position" value="topright" type="string" />
+		<option name="close_text" value="websiteViewerclose_text" type="string" />
+
+		<option name="close_callback" value="invokeKrFunction('closeKolorBoxCallback_websiteViewer')" type="string" />
+		<option name="zorder" value="15" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+	<internaldata>
+		
+	</internaldata>
+</ptplugin>
+
+<action name="kolorBoxJsReady_websiteViewer">
+	set(ptplugin[websiteViewer].jsready, true);
+</action>
+
+<action name="openWebsite_websiteViewer">
+	ifnot(ptplugin[websiteViewer].isOpen,
+		if(ptplugin[websiteViewer].doNotDeleteMe,
+			set(ptplugin[websiteViewer].currentCall, false);
+		set(ptplugin[websiteViewer].isOpen, true);
+		set(ptplugin[websiteViewer].doNotDeleteMe, false);
+		getmessage(websiteViewer_boxurl, %1);
+		txtadd(websiteViewer_boxurl, ?iframe=true);
+		pauseautorotation(forceplugin);
+
+		js(invokePluginFunction(websiteViewer, loadSingleArrayItem, get(websiteViewer_boxurl), %2));
+		,
+			set(ptplugin[websiteViewer].currentCall, true);
+			set(ptplugin[websiteViewer].doNotDeleteMe, true);
+			events.dispatch(onremovedisplayedobject);
+			delayedcall(0.3,openWebsite_websiteViewer(%1,%2););
+		);
+	,
+		if('%1' != websiteViewer_boxurl,
+			closeKolorBox_websiteViewer();
+			delayedcall(0.3,openWebsite_websiteViewer(%1,%2););
+		);
+	);
+</action>
+
+<action name="toggleWebsite_websiteViewer">
+	js(invokePluginFunction(websiteViewer, toggleKolorBox, %1));
+</action>
+
+
+<action name="closeKolorBox_websiteViewer">
+	if(ptplugin[websiteViewer].doNotDeleteMe,
+		set(ptplugin[websiteViewer].doNotDeleteMe, false);
+	,
+	js(invokePluginFunction(websiteViewer, closeKolorBox));
+	);
+</action>
+
+<action name="closeKolorBoxCallback_websiteViewer">
+	resumeautorotation(forceplugin);
+
+	set(ptplugin[websiteViewer].doNotDeleteMe, false);
+	set(ptplugin[websiteViewer].isOpen, false);
+</action>
+
+<action name="changeLanguage_websiteViewer">
+	if(ptplugin[websiteViewer].jsready,
+		stopdelayedcall(delay_websiteViewer);
+		js(invokePluginFunction(websiteViewer, changeLanguage));
+	,
+		delayedcall(delay_websiteViewer, 0.1, changeLanguage_websiteViewer(););
+	);
+</action>
+
+<events name="kolorBoxEvents_websiteViewer" 
+	keep="true"
+	onremovepano="if(ptplugin[websiteViewer].isOpen,closeKolorBox_websiteViewer(););"
+	onremovedisplayedobject="ifnot(ptplugin[websiteViewer].currentCall,if(ptplugin[websiteViewer].isOpen,closeKolorBox_websiteViewer();););"
+	changetourlanguage="changeLanguage_websiteViewer();"
+	/>
+
+<action name="setViewArchitectural">
+	if(normalViewActivated,stopSetViewTweens(););
+	if(current_view_isflat === true,
+		setViewNonFlat(VFOV);
+	);
+	setViewArchitecturalComplete();
+</action>
+
+<action name="setViewArchitecturalComplete">
+	set(view.fovmax, get(panoview.fovmax));
+	set(view.fisheyefovlink, 0.5);
+	tween(view.architectural, 1.0, distance(1.0, 0.45));
+	tween(view.pannini, 0.0, distance(1.0, 0.45), easeOutQuad, if(panniniViewActivated,restoreViewFromPannini();););
+	tween(view.fisheye, 0.0, distance(1.0, 0.45), easeOutQuad, 
+		set(view.stereographic,false);
+		tween(view.vlookat, get(panoview.v), distance(90, 0.45));
+	);
+	tween(view.fov, get(panoview.fov), distance(50, 0.45));
+</action>
+
+  <!-- Sounds Management -->
+  <plugin name="soundinterface"
+          preload="true"
+          url="%SWFPATH%/graphics/soundinterface.swf"
+          alturl="%FIRSTXML%/graphics/soundinterface.js"
+          rootpath="%$videos_sounds_path%/sounds"
+          backgroundsound=""
+          backgroundsoundloops="0"
+          bgsound="false"
+          bgsoundpaused="false"
+          bgsoundloopended="false"
+          volumeinitialized="false"
+          started="true"
+          keep="true"/>
+  <events name="soundmanagementevents"
+          onnewpano="if(plugin[soundinterface].started,playbackgroundsound(););"
+          onxmlcomplete="soundinterfaceonxmlcomplete();"
+          keep="true"/>
+  <action name="soundinterfaceonxmlcomplete">
+    ifnot(plugin[soundinterface].volumeinitialized,
+      div(plugin[soundinterface].volume, tour_soundsvolume, 100);
+      set(plugin[soundinterface].volumeinitialized,true);
+    );
+  </action>
+  <action name="playsound3Dwhenpossible">
+    set(really_play_sound, true);
+    if (tour_current_played_sound,
+      if (%1 == tour_current_played_sound,
+        delete(tour_current_played_sound);
+        set(tour_current_played_sound_state, 0);
+        delete(tour_current_played_sound_paused);
+        stopsound(%1);
+        set(really_play_sound, false);
+        if(%4,
+          delete(tour_current_played_sound_pausesound);
+          resumeTourSoundsActions(true,true,true,true,true);
+        );
+      );
+    );
+    if (really_play_sound,
+      if (tour_current_played_sound,
+        stopsound(get(tour_current_played_sound));
+
+        ifnot(%4,
+          if(tour_current_played_sound_pausesound,
+            delete(tour_current_played_sound_pausesound);
+            resumeTourSoundsActions(true,true,true,true,true);
+          );
+        );
+      );
+      if(%4,
+        set(tour_current_played_sound_pausesound, true);
+        pauseTourSoundsActions(true,false,true,true,true);
+      );
+      set(tour_current_played_sound, %1);
+      if(tour_current_played_video,
+        set(tour_current_played_sound_state, 2);
+      ,
+        set(tour_current_played_sound_state, 1);
+      );
+      set(tour_current_played_sound_paused, false);
+      if (%3,
+        if (device.flash,
+          div(volume, tour_soundsvolume, 100);
+          if(%9 != null,
+            playsound3D(%1,%2,%5,%6,%7,get(volume),%8,stopsound3Dwhenpossible(%1,%4));
+          ,
+            playsound3D(%1,%2,%5,%6,%7,get(volume),%8);
+          );
+        ,
+          if(%9 != null,
+            playsound(%1,%2,%8,stopsound3Dwhenpossible(%1,%4));
+          ,
+            playsound(%1,%2,%8);
+          );
+        );
+      ,
+        if(%6 != null,
+          playsound(%1,%2,%5,stopsound3Dwhenpossible(%1,%4));
+        ,
+          playsound(%1,%2,%5);
+        );
+      );
+
+      ifnot(tour_soundson,
+        set(tour_current_played_sound_paused, true);
+        pausesound(%1);
+      );
+    );
+  </action>
+  <action name="stopsound3Dwhenpossible">
+    if (%1 == tour_current_played_sound,
+      delete(tour_current_played_sound);
+      set(tour_current_played_sound_state, 0);
+      delete(tour_current_played_sound_paused);
+
+      ifnot(device.safari,
+        stopsound(%1);
+      );
+      if(%2,
+        delete(tour_current_played_sound_pausesound);
+        resumeTourSoundsActions(true,true,true,true,true);
+      );
+    );
+  </action>
+  <action name="playbackgroundsound">
+  if(playsound,
+    if (xml.scene,
+      if (scene[get(xml.scene)].backgroundsound,
+        if (plugin[soundinterface].backgroundsound != scene[get(xml.scene)].backgroundsound,
+          copy(plugin[soundinterface].backgroundsound, scene[get(xml.scene)].backgroundsound);
+          copy(plugin[soundinterface].backgroundsoundloops, scene[get(xml.scene)].backgroundsoundloops);
+          if (tour_soundson,
+            set(plugin[soundinterface].bgsound, true);
+            set(plugin[soundinterface].bgsoundpaused, false);
+            set(plugin[soundinterface].bgsoundloopended, false);
+            if((scene[get(xml.scene)].video == true AND scene[get(xml.scene)].scenevideomute == true) OR scene[get(xml.scene)].video == false,
+              if(plugin[soundinterface].backgroundsoundloops GT 0,
+                playsound(bgsoundname, get(plugin[soundinterface].backgroundsound), get(plugin[soundinterface].backgroundsoundloops), stopbackgroundsoundoncomplete());
+              ,
+                playsound(bgsoundname, get(plugin[soundinterface].backgroundsound), get(plugin[soundinterface].backgroundsoundloops));
+              );
+            );
+           ,
+            set(plugin[soundinterface].bgsound, false);
+          );
+        ,
+          if (tour_soundson,
+            if((plugin[soundinterface].bgsoundpaused == true AND scene[get(xml.scene)].video == false) OR (scene[get(xml.scene)].video == true AND scene[get(xml.scene)].scenevideomute == true),
+              resumesound(bgsoundname);
+              set(plugin[soundinterface].bgsoundpaused, false);
+            );
+          ,
+            set(plugin[soundinterface].bgsound, false);
+          );
+        );
+      );
+    );
+  ,
+    delayedcall(0.2, playbackgroundsound());
+  );
+  </action>
+  <action name="stopbackgroundsoundoncomplete">
+    if (plugin[soundinterface].backgroundsound,
+    if (plugin[soundinterface].backgroundsoundloops GT 0,
+
+      set(plugin[soundinterface].backgroundsoundloops, 0);
+      set(plugin[soundinterface].bgsound, false);
+      set(plugin[soundinterface].bgsoundpaused, false);
+      set(plugin[soundinterface].bgsoundloopended, true);
+    );
+    );
+  </action>
+  <action name="resetbackgroundsoundifneeded">
+    if (xml.scene,
+      if (scene[get(xml.scene)].backgroundsound != scene[%1].backgroundsound,
+        if(plugin[soundinterface].backgroundsound,
+          stopsound(bgsoundname);
+        );
+        set(plugin[soundinterface].backgroundsound, "");
+        set(plugin[soundinterface].backgroundsoundloops, 0);
+        set(plugin[soundinterface].bgsound, false);
+        set(plugin[soundinterface].bgsoundpaused, false);
+        set(plugin[soundinterface].bgsoundloopended, false);
+      );
+    );
+  </action>
+  <action name="pausebackgroundsound">
+    if(plugin[soundinterface].backgroundsound,
+      if (plugin[soundinterface].bgsound,
+        if(plugin[soundinterface].bgsoundpaused == false AND plugin[soundinterface].bgsoundloopended == false,
+          pausesound(bgsoundname);
+          set(plugin[soundinterface].bgsoundpaused, true);
+        );
+      );
+    );
+    
+  </action>
+  <action name="resumebackgroundsound">
+    set(bgSoundOnResume, true);
+    set(forceBgSoundOnResume, true);
+    if(layer[displayedStandardVideo],
+    if(layer[displayedStandardVideo].pausebgsound AND tour_current_played_video,
+      set(bgSoundOnResume, false);
+      set(forceBgSoundOnResume, false);
+    ););
+    if(layer[webvideodisplay_player],
+    if(layer[webvideodisplay_player].pausebgsound AND tour_current_played_web_video,
+      set(bgSoundOnResume, false);
+      set(forceBgSoundOnResume, false);
+    ););
+    if(tour_current_played_sound_pausesound AND tour_current_played_sound,
+      set(bgSoundOnResume, false);
+    );
+    ifnot(plugin[soundinterface].backgroundsound AND scene[get(xml.scene)].backgroundsound,
+      set(bgSoundOnResume, false);
+    );
+    if(videospots_playing GT 0,
+      set(bgSoundOnResume, false);
+      set(forceBgSoundOnResume, false);
+    );
+    if(bgSoundOnResume,
+      if (plugin[soundinterface].backgroundsound,
+        if (tour_soundson,
+          if (plugin[soundinterface].bgsound AND plugin[soundinterface].bgsoundloopended == false,
+            if((plugin[soundinterface].bgsoundpaused == true AND scene[get(xml.scene)].video == false) OR (scene[get(xml.scene)].video == true AND scene[get(xml.scene)].scenevideomute == true),
+              resumesound(bgsoundname);
+              set(plugin[soundinterface].bgsoundpaused, false);
+            ,
+
+              if(device.mobile OR device.tablet OR device.safari,
+                resumesound(bgsoundname);
+                set(plugin[soundinterface].bgsoundpaused, false);
+              );
+            );
+          ,
+            set(plugin[soundinterface].bgsound, true);
+            set(plugin[soundinterface].bgsoundpaused, false);
+            set(plugin[soundinterface].bgsoundloopended, false);
+            if(plugin[soundinterface].backgroundsoundloops GT 0,
+              playsound(bgsoundname, get(plugin[soundinterface].backgroundsound), get(plugin[soundinterface].backgroundsoundloops), stopbackgroundsoundoncomplete());
+            ,
+              playsound(bgsoundname, get(plugin[soundinterface].backgroundsound), get(plugin[soundinterface].backgroundsoundloops));
+            );
+          );
+        );
+      );
+      
+    ,
+      if(forceBgSoundOnResume,
+        playbackgroundsound();
+        
+      );
+    );
+  </action>
+  <action name="preloadSounds">
+    preloadsound("leah-dustin_o_halloran.mp3");
+  </action>
+
+  <action name="play3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, playpanolocalsounds();););
+  </action>
+  <action name="stop3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, stoppanolocalsounds();););
+  </action>
+  <action name="resume3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, 
+      set(kill3dSoundOnResume, true);
+      if(layer[displayedStandardVideo],
+      if(layer[displayedStandardVideo].pausebgsound,
+      if(tour_current_played_video,
+        set(kill3dSoundOnResume, false);
+      );););
+      if(layer[webvideodisplay_player],
+      if(layer[webvideodisplay_player].pausebgsound,
+      if(tour_current_played_web_video,
+        set(kill3dSoundOnResume, false);
+      );););
+      if(tour_current_played_sound_pausesound,
+      if(tour_current_played_sound,
+        set(kill3dSoundOnResume, false);
+      ););
+      if(kill3dSoundOnResume,
+        resumepanolocalsounds();
+      );
+    ););
+  </action>
+  <action name="pause3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, pausepanolocalsounds();););
+  </action>
+  <action name="set3DLocalSoundsVolume">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, setpanolocalsoundsvolume();););
+  </action>
+  <action name="playTourSounds">
+    set(tour_soundson, true);events.dispatch(playtoursoundsevent);
+    resumeTourSoundsActions(true,true,true,true,true);
+  </action>
+  <action name="stopTourSounds">
+    set(tour_soundson, false);events.dispatch(stoptoursoundsevent);
+    pauseTourSoundsActions(true,true,true,true,true);
+  </action>
+  <action name="setTourSoundsVolume">
+    set(tour_soundsvolume, %1);events.dispatch(changetoursoundsevent);
+    div(volume, tour_soundsvolume, 100);
+    set(plugin[soundinterface].volume, get(volume));
+    set3DLocalSoundsVolume();
+  </action>
+  <action name="playTourSoundsActions">
+    if(%1,
+      if(plugin[soundinterface],
+        if(plugin[soundinterface].started,
+        play3DLocalSounds();
+        );
+      );
+    );
+    if(%2,
+      if(plugin[soundinterface],
+        if(plugin[soundinterface].started,
+          resumebackgroundsound();
+        );
+      );
+    );
+  </action>
+  <action name="stopTourSoundsActions">
+    if(%1,
+      stop3DLocalSounds();
+    );
+    if(%2,
+      stopSoundActionsSounds();
+    );
+    if(%3,
+      stopVideoActionsSounds();
+    );
+    if(%4,
+      pausebackgroundsound();
+    );
+  </action>
+  <action name="resumeTourSoundsActions">
+    if(%1,
+      if(plugin[soundinterface],
+        if(plugin[soundinterface].started,
+        resume3DLocalSounds();
+        );
+      );
+    );
+    if(%2,
+      resumeSoundActionsSounds();
+    );
+    if(%3,
+      resumeVideoActionsSounds();
+    );
+    if(%4,
+      if(%5,
+        if(plugin[soundinterface],
+          if(plugin[soundinterface].started,
+            resumebackgroundsound();
+          );
+        );
+      ,
+        pausebackgroundsound();
+      );
+    );
+  </action>
+  <action name="pauseTourSoundsActions">
+    if(%1,
+      pause3DLocalSounds();
+    );
+    if(%2,
+      pauseSoundActionsSounds();
+    );
+    if(%3,
+      pauseVideoActionsSounds();
+    );
+    if(%4,
+      if(%5,
+        pausebackgroundsound();
+      ,
+        if(plugin[soundinterface],
+          if(plugin[soundinterface].started,
+            resumebackgroundsound();
+          );
+        );
+      );
+    );
+  </action>
+  <action name="stopSoundActionsSounds">
+    if (tour_current_played_sound,
+      delete(tour_current_played_sound_paused);
+      stopsound(get(tour_current_played_sound));
+      delete(tour_current_played_sound);
+      set(tour_current_played_sound_state, 0);
+    );
+  </action>
+  <action name="stopVideoActionsSounds">
+    if(tour_current_played_video,
+      if(layer[displayedStandardVideo],
+        layer[displayedStandardVideo].stop();
+        removelayer(displayedStandardVideo);
+        if(layer[displayedStandardVideoOverlayButton], removelayer(displayedStandardVideoOverlayButton); );
+        if(layer[displayedStandardVideoOverlay], removelayer(displayedStandardVideoOverlay); );
+        delete(tour_current_played_video);
+        set(tour_current_played_video_state, 0);
+      );
+    );
+    if(tour_current_played_web_video,
+      displayWebVideoObjectClose();
+    );
+  </action>
+  <action name="resumeSoundActionsSounds">
+    if (tour_current_played_sound,
+      set(resumeSoundActionsVerification, true);
+      if(tour_current_played_video,
+        if(tour_current_played_sound_state LT tour_current_played_video_state,
+          set(resumeSoundActionsVerification, false);
+        );
+      );
+      if(resumeSoundActionsVerification,
+        if (tour_soundson,
+          if(tour_current_played_sound_paused,
+            set(tour_current_played_sound_paused, false);
+            resumesound(get(tour_current_played_sound));
+          ,
+
+            if(device.mobile OR device.tablet OR device.safari,
+              set(tour_current_played_sound_paused, false);
+              resumesound(get(tour_current_played_sound));
+            );
+          );
+        );
+      );
+    );
+  </action>
+  <action name="resumeVideoActionsSounds">
+    if(tour_current_played_video,
+      set(resumeVideoActionsVerification, true);
+      if(tour_current_played_sound,
+        if(tour_current_played_video_state LT tour_current_played_sound_state,
+          set(resumeVideoActionsVerification, false);
+        );
+      );
+      if(resumeVideoActionsVerification,
+        if (tour_soundson,
+          if(device.flash OR (device.webgl AND !device.ios),
+            div(volume, tour_soundsvolume, 100);
+            set(layer[displayedStandardVideo].volume, get(volume));
+          ,
+            ifnot(device.ios,
+              js(kpanotour.Sounds.startVideosSounds(get(volume)));
+            ,
+              if(tour_soundsvolume GT 0,
+                set(layer[displayedStandardVideo].muted, false);
+              ,
+                set(layer[displayedStandardVideo].muted, true);
+              );
+            );
+          );
+        ,
+          if(device.flash OR (device.webgl AND !device.ios),
+            set(layer[displayedStandardVideo].volume, 0);
+          ,
+            ifnot(device.ios,
+              js(kpanotour.Sounds.stopVideosSounds());
+            ,
+              set(layer[displayedStandardVideo].muted, true);
+            );
+          );
+        );
+      );
+    );
+  </action>
+  <action name="pauseSoundActionsSounds">
+    if (tour_current_played_sound,
+      ifnot(tour_current_played_sound_paused,
+        set(tour_current_played_sound_paused, true);
+        pausesound(get(tour_current_played_sound));
+      );
+    );
+  </action>
+  <action name="pauseVideoActionsSounds">
+    if(tour_current_played_video,
+      if(device.flash OR (device.webgl AND !device.ios),
+        set(layer[displayedStandardVideo].volume, 0);
+      ,
+        ifnot(device.ios,
+          js(kpanotour.Sounds.stopVideosSounds());
+        ,
+          set(layer[displayedStandardVideo].muted, true);
+        );
+      );
+    );
+  </action>
+
+  <!-- Tour Information -->
+  <action name="hideTourInfo">set(tour_displayinfo, false);events.dispatch(onhidetourinfo);</action>
+  <action name="showTourInfo">set(tour_displayinfo, true); events.dispatch(onshowtourinfo);</action>
+
+
+  <!-- Hide / Show Controls -->
+  <action name="hideTourControls">set(tour_displaycontrols, false);events.dispatch(hidetourcontrols);</action>
+  <action name="showTourControls">set(tour_displaycontrols, true); events.dispatch(showtourcontrols);</action>
+
+
+<action name="setViewLittlePlanet">
+	set(sceneisfull360, false);
+	if(scene[get(xml.scene)].full360,
+		sub(viewhfov, panoview.hmax, panoview.hmin);
+		if (viewhfov == 360,
+			sub(viewvfov, panoview.vmax, panoview.vmin);
+			if (viewvfov == 180,
+				set(sceneisfull360, true);
+			);
+		);
+	);
+	if (sceneisfull360 AND (device.webgl OR device.flash),
+		if(normalViewActivated,stopSetViewTweens(););
+		if(current_view_isflat === true,
+			setViewNonFlat(VFOV);
+		);
+		setViewLittlePlanetComplete();
+	);
+</action>
+
+<action name="setViewLittlePlanetComplete">
+	set(backtonormalfirst,false);
+	if(view.pannini GE 1.0, set(backtonormalfirst,true));
+	if(view.stereographic == false, set(backtonormalfirst,true));
+	if(backtonormalfirst, hideTooltip();tween(view.fisheye, 0.0 ,distance(1.0, 0.25), easeOutQuad, WAIT); );
+	set(view.stereographic, true);
+	set(view.fisheyefovlink, 1.5);
+	tween(view.architectural, 0.0, 0.25);
+	tween(view.vlookat, 90, distance(179, 1.50));
+	tween(view.pannini, 0.0, distance(1.0, 0.75), easeOutQuad, if(panniniViewActivated,restoreViewFromPannini();););
+	if(panoview.fovmax LE 150, set(view.fovmax, 150); , set(view.fovmax, get(panoview.fovmax)); );
+	tween(view.fisheye, 1.0, distance(1.0, 0.75));
+	tween(view.fov, 150, distance(179, 0.75));
+</action>
+
+<action name="setViewStereographic">
+	set(sceneisfull360, false);
+	if(scene[get(xml.scene)].full360,
+		sub(viewhfov, panoview.hmax, panoview.hmin);
+		if (viewhfov == 360,
+			sub(viewvfov, panoview.vmax, panoview.vmin);
+			if (viewvfov == 180,
+				set(sceneisfull360, true);
+			);
+		);
+	);
+	if (sceneisfull360 AND (device.webgl OR device.flash),
+		if(normalViewActivated,stopSetViewTweens(););
+		if(current_view_isflat === true,
+			setViewNonFlat(VFOV);
+		);
+		setViewStereographicComplete();
+	);
+</action>
+
+<action name="setViewStereographicComplete">
+	set(backtonormalfirst,false);
+	if(view.pannini GE 1.0, set(backtonormalfirst,true));
+	if(view.stereographic == false, set(backtonormalfirst,true));
+	if(backtonormalfirst, hideTooltip();tween(view.fisheye, 0.0 ,distance(1.0, 0.25), easeOutQuad, WAIT); );
+	tween(view.architectural, 0.0, 0.25);
+	set(view.fovmax, get(panoview.fovmax));
+	set(view.fisheyefovlink, 1.5);
+	tween(view.pannini, 0.0, distance(1.0, 0.75), easeOutQuad, if(panniniViewActivated,restoreViewFromPannini();););
+	set(view.stereographic, true);
+	tween(view.fisheye, 1.0, distance(1.0, 0.75));
+	tween(view.vlookat, get(panoview.v), 1.25);
+	tween(view.fov, get(panoview.fov), distance(50, 0.45));
+</action>
+
+<action name="setViewNormal">
+	stopSetViewTweens();
+	if(current_view_isflat === true,
+		setViewNonFlat(VFOV);
+	);
+	setViewNormalComplete();
+</action>
+
+<action name="setViewNormalComplete">
+	set(view.fisheyefovlink, 0.5);
+	set(view.fovmax, get(panoview.fovmax));
+	tween(view.architectural, 0.0, distance(1.0, 0.45));
+	tween(view.pannini, 0.0, distance(1.0, 0.45), easeOutQuad, if(panniniViewActivated,restoreViewFromPannini();););
+	tween(view.vlookat, get(panoview.v), distance(90, 0.45));
+	tween(view.fov, get(panoview.fov), distance(50, 0.45));
+	tween(view.fisheye, 0.0, distance(1.0, 0.45),
+		set(view.stereographic,false);
+	);
+</action>
+
+<krpano normalViewActivated="true" />
+<action name="stopSetViewTweens">
+	stoptween(view.fov);
+	stoptween(view.vlookat);
+	stoptween(view.fisheye);
+	stoptween(view.architectural);
+	stoptween(view.pannini);
+</action>
+
+	<!-- WebVR plugin for VR availability tests -->
+
+	<plugin name="ptpvrmode" devices="html5" keep="true"
+		url="%FIRSTXML%/graphics/webvr.js"
+		mobilevr_support="true"
+		mobilevr_fake_support="true"
+		vr_cursor=""
+		vr_cursor_enabled="false"
+		onavailable="delayedcall(1, checkVrAvailability(););"
+		onunavailable="checkVrUnavailable();"
+		/>
+	<action name="checkVrAvailability">
+		if(plugin[ptpvrmode],
+			if (plugin[ptpvrmode].isavailable,
+				set(tour_vrdevices, true);
+				events.dispatch(onvravailable);
+			,
+				set(tour_vrdevices, false);
+			);
+		,
+			checkVrUnavailable();
+		);
+	</action>
+	<action name="checkVrUnavailable">
+		set(tour_vrdevices, false);
+		events.dispatch(onvrunavailable);
+	</action>
+  <!-- Hide / Show Thumbnails -->
+  <action name="hideTourThumbnails">set(tour_displaythumbnails, false);events.dispatch(hidetourthumbnails);</action>
+  <action name="showTourThumbnails">set(tour_displaythumbnails, true); events.dispatch(showtourthumbnails);</action>
+
+
+  <!-- Fullscreen Management -->
+  <action name="exitFullScreen" devices="fullscreensupport">set(tour_fullscreen,false);js(setFullscreen(false));</action>
+  <action name="enterFullScreen" devices="fullscreensupport">set(tour_fullscreen,true);js(setFullscreen(true));</action>
+  <action name="switchFullScreen">if(tour_fullscreen,exitFullScreen();,enterFullScreen(););</action>
+
+  
+  <events name="krpanoExitFullscreenEvent"
+    onexitfullscreen="if(tour_fullscreen,exitFullScreenChangeEvent(););"
+    keep="true" />
+
+  <action name="exitFullScreenChangeEvent" devices="fullscreensupport">set(tour_fullscreen,false);events.dispatch(onexitfullscreen);</action>
+  <action name="enterFullScreenChangeEvent" devices="fullscreensupport">set(tour_fullscreen,true);events.dispatch(onenterfullscreen);</action>
+  <action name="exitFullScreenFallback">set(fullscreen,false);</action>
+  <action name="enterFullScreenFallback">set(fullscreen,true);</action>
+  
+  <action name="resizeFullScreenEvent">delayedcall(0,updatescreen(););</action>
+
+</krpano>
